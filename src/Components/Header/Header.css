@@ -1,0 +1,209 @@
+.headerParentDiv {
+  padding: 10px;
+  background-color: whitesmoke;
+  position: fixed;
+  width: 100vw;
+  z-index: 2;
+  box-shadow: 0px 0.5px 5px 0.5px rgb(186, 186, 186);
+}
+
+.headerChildDiv {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding-right: 22px;
+}
+
+.brandName {
+  margin-left: 15px;
+}
+
+.placeSearch {
+  width: 20%;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 8px;
+  border: 2px solid #002f34;
+  border-radius: 4px;
+  background-color: white;
+}
+
+.placeSearch ::selection {
+  border-color: #23e5db;
+  outline-color: #23e5db;
+}
+
+.placeSearch>input {
+  border-color: transparent;
+  outline-color: transparent;
+}
+
+.productSearch {
+  max-width: 39em;
+  width: 39%;
+  height: 48px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: none;
+}
+
+.productSearch__input {
+  width: 100%;
+  height: 100%;
+  border: 2px solid #002f34;
+  border-radius: 4px 0 0 4px;
+  outline: none;
+}
+
+.productSearch__input:focus {
+  border: 2px solid #23e5db;
+}
+
+.searchAction {
+  min-width: 48px;
+  height: 48px;
+  position: relative;
+  display: flex;
+  cursor: pointer;
+  background-color: #002f34;
+  border-radius: 0 4px 4px 0;
+}
+
+.searchAction svg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  fill: white;
+}
+
+.language {
+  width:7.4;
+  height: 48px;
+  display: flex;
+  align-items: center;
+}
+
+.language span {
+  /* justify-content: space-between;
+  align-items: center; */
+  font-size: 15px;
+  white-space: normal;
+  text-overflow: ellipsis;
+  font-weight: bolder;
+  margin-right: 3px;
+}
+
+.language svg {}
+
+.span {
+  text-decoration: none;
+  font-size: 16px;
+  white-space: normal;
+  text-overflow: ellipsis;
+  font-weight: bolder;
+  margin-right: 5px;
+}
+
+.userLogin__btn {
+  font-size: 16px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 600;
+  color: #002f34;
+  border-bottom: 2px solid #002f34;
+  cursor: pointer;
+}
+
+/* 
+.loginPage {
+  border-bottom: 2px solid black;
+  line-height: 18px;
+  cursor: pointer;
+}
+
+.loginPage > span {
+  font-weight: 600;
+  padding: 1px;
+} */
+
+.sellMenu {
+  position: relative;
+  cursor: pointer;
+  border-radius: 30px;
+  margin-right: 10px;
+  text-shadow: #002f34;  
+  z-index: -1;
+  
+}
+
+.sellMenu .all {
+  fill: white;
+  filter: drop-shadow(50px 20px 50px #000000);
+}
+
+.sellMenu .top {
+  fill: #23e5db;
+}
+
+.sellMenu .left {
+  fill: #ffce32;
+}
+
+.sellMenu .right {
+  fill: #3a77ff;
+}
+
+.sellMenu .sellMenuContent {
+  display: flex;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  color: #002f34;
+}
+
+/* .sellMenu .sellMenuContent svg {
+  align-items: center;
+} */
+
+.sellMenu .sellMenuContent span {
+  margin-left: 5px;
+}
+
+@media only screen and (max-width: 700px) {
+  .placeSearch, .productSearch, .sellMenu {
+    display: none;
+  }
+}
+
+
+
+
+
+
+
+
+.login__popup{
+  display: flex;
+  position: absolute;
+  width: 100%;
+  height: 100vh;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+.login__popupdisabled {
+  display: none;
+}

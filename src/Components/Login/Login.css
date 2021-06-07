@@ -1,0 +1,89 @@
+.login{
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  background-color: rgba(0, 0, 0, 0.378);
+}
+.login__icons {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+.close__icon {
+  padding: 8px 13px;
+  font-size: 16px;
+  cursor: pointer;
+}
+.back__icon {
+  padding: 8px 13px;
+  font-size: 20px;
+  cursor: pointer;
+}
+.login__logo {
+  width: 150px;
+  height: 150px;
+}
+
+.login__contents {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  width: 350px;
+  max-width: 95%;
+  height: 500px;
+  max-height: 95%;
+  box-shadow: 1px 4px 20px 2px rgb(87, 87, 87);
+  border-radius: 7px;
+  background-color: rgb(255, 255, 255);
+  z-index: 5;
+}
+.login__contents > h3 {
+  color: #002f34;
+  font-weight: 600;
+}
+.login__error {
+  width: 90%;
+  font-size: 0.7rem;
+  color: red;
+  margin: 0;
+}
+.login__form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  width: 90%;
+  height: 250px;
+}  
+.input {
+    width: 100%;
+    outline: none;
+    border: none;
+    border-bottom: 2px solid #002f34; 
+}
+.login__button {
+    width: 100%;
+    height: 35px;
+    background-color: #002f34;
+    border: 2px solid #002f34;
+    color: whitesmoke;
+    font-weight: 900;
+  }
+.login__button:hover {
+    background-color: white;
+    color: #002f34;
+    border: 2px solid #002f34;
+}
+  
+.signup__button {
+  text-decoration: underline;
+  cursor: pointer;
+  font-weight: 600;
+}
+.signup__button:hover {
+  color: #02515a;
+}

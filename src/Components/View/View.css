@@ -1,23 +1,41 @@
-.viewParentDiv {
-  padding-top: 4em;
+.item__parentDiv {
+  padding-top: 2em;
+  padding-bottom: 8em;
+  padding: 2em 3em 8em 3em;
   display: flex;
-}
-.viewParentDiv .imageShowDiv {
-  padding: 16px;
-  width: 70vw;
-}
-.viewParentDiv .imageShowDiv img {
-  width: 65vw;
-  height: 85vh;
+  flex-direction: column;
+  justify-content: space-around;
 }
 
-.viewParentDiv .rightSection {
+.item__parentDiv > span {
+  font-size: 13px;
+}
+
+.item__details {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 100%;
+  padding: 3em 0;
+}
+
+/* .view__img {
   padding: 16px;
-  margin-top: 3em;
+  width: 70vw;
+} */
+
+.item__img > img{
+  width: 58vw;
+  height: auto;
+  max-height: 500px;
+  object-fit: contain;
+}
+
+.item__description {
   width: 30vw;
 }
 
-.viewParentDiv .rightSection .productDetails :first-child {
+.item__description:first-child {
   font-weight: 700;
   margin-bottom: 8px;
   color: #002f34;
@@ -26,25 +44,49 @@
   margin-bottom: 20px;
 }
 
-.viewParentDiv .rightSection .productDetails {
-  border: 1px solid black;
+.item__productDescription {
+  border: 1px solid rgba(0,47,52,.36);
   padding: 6px;
-  border-radius: 6px;
+  border-radius: 4px;
   margin-bottom: 2em;
   width: 100%;
 }
 
-.viewParentDiv .rightSection .contactDetails {
-  border: 1px solid black;
+.item__sellerDescription {
+  border: 1px solid rgba(0,47,52,.36);
   padding: 6px;
-  border-radius: 6px;
+  border-radius: 4px;
+  margin-bottom: 2em;
 }
 
-.viewParentDiv .rightSection .contactDetails :first-child {
+.item__sellerDescription :first-child {
   font-size: 20px;
   line-height: 24px;
   font-weight: 700;
   color: #002f34;
   font-weight: 400;
   padding: 0;
+}
+.item__location {
+  border: 1px solid rgba(0,47,52,.36);
+  padding: 6px;
+  border-radius: 4px;
+}
+.item__location :first-child {
+  font-size: 20px;
+  line-height: 24px;
+  font-weight: 700;
+  color: #002f34;
+  font-weight: 400;
+  padding: 0;
+}
+.item__moreInfo {
+  width: 58vw;
+  border: 1px solid rgba(0,47,52,.36);
+  padding: 25px 18px 35px 18px;
+  border-radius: 4px;
+}
+.item__moreInfo > h5 {
+  font-weight: 600;
+  color: #002f34;
 }

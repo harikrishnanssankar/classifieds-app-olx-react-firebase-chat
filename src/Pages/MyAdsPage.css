@@ -1,0 +1,27 @@
+.myAds__Page {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  
+
+}
+.myAdsPage__navigation {
+    display: flex;
+    margin: 20px 0 0 35px;
+    cursor: pointer;
+}
+.myAdsPage__navigation > h6 ~ h6 {
+    padding-left: 20px;
+}
+.myAds__notActive {
+    padding: 0 10px 10px 10px;
+    border-bottom: 1px solid rgba(2, 21, 56, 0.289);
+    transition: ease-in 0.3s;
+}
+.myAds__active {
+    padding: 0 10px 10px 10px;
+    font-weight: 600;
+    border-bottom: 4px solid #002f34 ;
+    transition: ease-in 0.3s;
+
+}

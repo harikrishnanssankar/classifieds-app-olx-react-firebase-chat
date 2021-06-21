@@ -1,0 +1,96 @@
+.category__menu {
+    display: flex;
+    flex-direction: column;
+    padding: 5em 2.2em 0.6em 2.2em;
+    box-shadow: 0px 0.5px 5px 0.5px rgba(186, 186, 186, 0.494);
+    
+}
+
+.category__menu span {}
+.category__title {
+    display: flex;
+
+}
+.category__title span {
+    margin-right: 7px;
+    font-weight: bolder;
+}
+.category__titleContents {
+    display: flex;
+    margin-right: 10px;
+}
+.category__arrow {
+    transform: rotate(180deg);
+    transition: ease-in 0.3s;  
+}
+.category__arrowDown {
+    transition: ease-out 0.3s;
+}
+
+.category__quickOptions span {
+    font-size: 14px;
+    padding: 8px;
+}
+
+.Modal {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 7em;
+    margin-left: auto;
+    margin-right: auto;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    width: 95%;
+    height: max-content;
+    border-radius: 5px;
+    outline: none;
+    background-color: rgb(255, 255, 255);
+    box-shadow: 1px 2px 6px 1px rgba(87, 87, 87, 0.44);
+}
+
+.Overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(87, 87, 87, 0.049);
+}
+
+.category__list {
+    padding: 30px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: auto ;
+    row-gap: 1em;
+    column-gap: 2em;
+}
+.category__listGroup {
+    padding: 10px 20px;
+}
+
+.category__listTitle{
+    font-size: 14px;
+    font-weight: 600;
+    padding-bottom: 5px;
+}
+.category__listTitle:hover{
+    color: rgb(0, 112, 112);
+    cursor: pointer;
+
+}
+.category__listContent {
+    font-size: 14px;
+}
+.category__listContent:hover {
+    color: rgb(0, 112, 112);
+    cursor: pointer;
+}
+.category__list .Jobs {
+    grid-row-start: 1;
+    grid-row-end:span 2;
+}

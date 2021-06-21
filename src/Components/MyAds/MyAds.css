@@ -1,0 +1,25 @@
+/* .my__ads {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    row-gap: 25px;
+    margin-top: 10px;
+    padding-left: 25px;
+} */
+.my__ads {
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: 10px;
+    row-gap: 20px;
+    justify-content: space-evenly;
+}
+
+/* .myAds__cards {
+    max-width: 222px;
+    padding: 13px;
+    width: 222px;
+    height: 270px;
+    cursor: pointer;
+    border: 1px solid rgba(4, 37, 79, 0.152);
+    border-radius: 5px;
+} */

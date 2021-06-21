@@ -33,7 +33,7 @@ function Login({ setLoginPopOn, loginPopOn }) {
         passwordRef.current.value
       ).then((result) => {
         result.user.updateProfile({ displayName: usernameRef.current.value }).then(() => {
-          db.collection('users').add({
+          db.doc(`/users/${result.user.uid}`).set({
             id: result.user.uid,
             username: usernameRef.current.value,
             phone: phoneRef.current.value
@@ -53,19 +53,19 @@ function Login({ setLoginPopOn, loginPopOn }) {
       setIsSignUp(false)
     } else {
       setLoginPopOn(false)
+      history.push('/')
     }
   }
 
   const loginClose = () => {
     setLoginPopOn(false)
     setIsSignUp(false)
+    history.push('/')
   }
 
 
   let popUpRef = useRef();
-
-  useEffect(() => {
-    
+  useEffect(() => { 
       let handler = (event) => {
         if (!popUpRef.current.contains(event.target)) {
           setLoginPopOn(false)
@@ -76,8 +76,6 @@ function Login({ setLoginPopOn, loginPopOn }) {
       return () => {
         document.removeEventListener("mousedown", handler)
       }
-  
-
   })
 
 
@@ -91,10 +89,10 @@ function Login({ setLoginPopOn, loginPopOn }) {
       <div ref={popUpRef} className="login__contents">
         <div className="login__icons">
           <div onClick={navigateBack} className="back__icon">
-            <i class="bi bi-arrow-left"></i>
+            <i className="bi bi-arrow-left"></i>
           </div>
           <div onClick={loginClose} className="close__icon">
-            <i class="bi bi-x-lg"></i>
+            <i className="bi bi-x-lg"></i>
           </div>
         </div>
         <img onClick={() => history.push('/')} className="login__logo" src={Logo} />

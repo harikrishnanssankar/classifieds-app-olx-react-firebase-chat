@@ -1,0 +1,46 @@
+.card__container {
+    padding: 13px;
+    width: 222px;
+    height: 270px;
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+    border: 1px solid rgba(4, 37, 79, 0.152);
+    border-radius: 5px;
+  }
+  
+ .card__favorite {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+  }
+  
+  .card__image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .card__image img {
+    height: 100px;
+    max-width: 100%;
+    max-height: 100%;
+    min-height: 100%;
+    text-align: center;
+  }
+  .card__rate {
+    margin-top: 10px;
+    font-size: larger;
+    font-weight: bold;
+  }
+  .card__kilometer {
+    font-size: medium;
+  }
+  .card__name {
+    font-size: small;
+  }
+  .card__date {
+    display: flex;
+    justify-content: flex-end;
+    font-size: small;
+  }

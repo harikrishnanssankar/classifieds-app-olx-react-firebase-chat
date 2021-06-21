@@ -2,13 +2,23 @@ import React, { Fragment } from 'react';
 import './Create.css';
 import Header from '../Components/Header/Header';
 import Create from '../Components/Create/Create';
+import Footer from '../Components/Footer/Footer';
+import { Redirect, useHistory } from 'react-router';
 
-const CreatePage = () => {
+const CreatePage = ({user}) => {
+  const history = useHistory();
+
+  if(!user){
+    return <Redirect to={{
+      pathname: "/",
+      state: {from: "create"}
+    }} />
+  } 
   return (
-    <Fragment>
-      <Header />
-      <Create/>
-    </Fragment>
+    <div>
+      <Create />
+    </div>
+
   );
 };
 

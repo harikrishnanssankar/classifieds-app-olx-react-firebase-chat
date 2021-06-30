@@ -1,18 +1,13 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Heart from '../../assets/Heart';
 import './Post.css';
 import db from '../../firebase';
-import { Link, useHistory } from 'react-router-dom';
 import Cards from '../Cards/Cards';
 
 
-function Posts() {
-
-  // const {firebase} = useContext(FirebaseContext)  
+const Posts = () => {
+  // const history = useHistory();
   const [products, setProducts] = useState([])
-  const history = useHistory();
-
-
   useEffect(() => {
     db.collection('products').get().then(snapshot => {
       const allPost = snapshot.docs.map((product) => {
@@ -23,10 +18,9 @@ function Posts() {
       })
       setProducts(allPost)
     })
-    return () => {
-    }
-  }, [])
-  console.log(products);
+  },[])
+
+
 
   return (
     <div className="postParentDiv">

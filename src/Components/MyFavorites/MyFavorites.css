@@ -1,3 +1,11 @@
 .myFavorites {
     min-height: 80vh;
 }
+
+.myFav__cards {
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: 10px;
+    row-gap: 20px;
+    justify-content: space-evenly;
+}

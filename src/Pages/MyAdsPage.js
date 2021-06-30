@@ -23,19 +23,16 @@ const MyAdsPage = () => {
             <Header />
             <Category />
             <div className="myAdsPage__navigation">
-                <h6 className={(location.pathname === '/myads')? 'myAds__active' : 'myAds__notActive' } onClick={() => history.push('/myads')}>Ads</h6>
-                <h6 className={(location.pathname === '/myfavorites')? 'myAds__active' : 'myAds__notActive'} onClick={() => history.push('/myfavorites')}>Favourites</h6>
+                <h6 className={(location.pathname === '/myads') ? 'myAds__active' : 'myAds__notActive'} onClick={() => history.push('/myads')}>Ads</h6>
+                <h6 className={(location.pathname === '/myfavorites') ? 'myAds__active' : 'myAds__notActive'} onClick={() => history.push('/myfavorites')}>Favourites</h6>
             </div>
-            <Route path="/myads">
-                <MyAds />
-            </Route>
-            <Route path="/myfavorites">
-                <MyFavorites />
-            </Route>
-
-
+            {
+                (location.pathname == '/myfavorites') ?
+                    <MyFavorites />
+                    :
+                    <MyAds />
+            }
             <Footer />
-
         </div>
     );
 }

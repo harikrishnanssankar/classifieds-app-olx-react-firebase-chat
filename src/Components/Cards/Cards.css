@@ -1,24 +1,36 @@
 .card__container {
     padding: 13px;
     width: 222px;
-    height: 270px;
+    min-height: 270px;
     display: flex;
     flex-direction: column;
-    cursor: pointer;
     border: 1px solid rgba(4, 37, 79, 0.152);
     border-radius: 5px;
+    max-height: 310px;
   }
-  
+  .card__heart {
+    color: rgb(255, 255, 255);
+    text-shadow: 0px 0px 2px  #000;
+  }
+  .card__heart:hover {
+    color: rgb(58, 58, 58);
+    text-shadow: 0px 0px 5px  rgb(49, 49, 49);
+  }
  .card__favorite {
     display: flex;
     justify-content: flex-end;
     align-items: center;
+    cursor: pointer;
+  }
+  .card__contents {
+    cursor: pointer;
   }
   
   .card__image {
     display: flex;
     justify-content: center;
     align-items: center;
+    
   }
   
   .card__image img {
@@ -27,6 +39,7 @@
     max-height: 100%;
     min-height: 100%;
     text-align: center;
+    border-radius: 5px;
   }
   .card__rate {
     margin-top: 10px;
@@ -43,4 +56,16 @@
     display: flex;
     justify-content: flex-end;
     font-size: small;
+  }
+
+  .card__deleteBtn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+  }
+  .card__deleteBtn > i {
+    color: red;
+    cursor: pointer;
+    font-size: larger;
   }

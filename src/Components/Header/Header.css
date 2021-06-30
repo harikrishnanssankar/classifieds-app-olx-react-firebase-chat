@@ -40,12 +40,19 @@
   border-color: transparent;
   outline-color: transparent;
 }
-
-.productSearch {
+.product__SearchContainer{
   max-width: 39em;
   width: 39%;
   height: 48px;
   border-radius: 4px;
+}
+
+.productSearch {
+  /* max-width: 39em;
+  width: 39%;
+  height: 48px;
+  border-radius: 4px; */
+  height: 100%;
   display: flex;
   align-items: center;
   background-color: white;
@@ -53,6 +60,7 @@
   align-items: center;
   justify-content: space-between;
   border: none;
+  
 }
 
 .productSearch__input {
@@ -76,6 +84,8 @@
   cursor: pointer;
   background-color: #002f34;
   border-radius: 0 4px 4px 0;
+  border: none;
+  outline: none;
 }
 
 .searchAction svg {

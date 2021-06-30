@@ -6,12 +6,15 @@
     margin-top: 10px;
     padding-left: 25px;
 } */
-.my__ads {
-    display: flex;
-    flex-wrap: wrap;
-    column-gap: 10px;
-    row-gap: 20px;
-    justify-content: space-evenly;
+.my__ads { 
+    min-height: 75vh;
+}
+.myAds__container {
+  display: flex;
+  flex-wrap: wrap;
+  row-gap: 20px;
+  justify-content: space-evenly;
+  
 }
 
 /* .myAds__cards {
@@ -23,3 +26,61 @@
     border: 1px solid rgba(4, 37, 79, 0.152);
     border-radius: 5px;
 } */
+.myads__noads {
+    height: 75vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 50px;
+}
+
+
+
+.myads__sellMenu {
+    position: relative;
+    cursor: pointer;
+    border-radius: 30px;
+    margin-right: 10px;
+    text-shadow: #002f34;  
+    z-index: -1;
+    
+  }
+  
+  .myads__sellMenu .all {
+    fill: white;
+    filter: drop-shadow(50px 20px 50px #000000);
+  }
+  
+  .myads__sellMenu .top {
+    fill: #23e5db;
+  }
+  
+  .myads__sellMenu .left {
+    fill: #ffce32;
+  }
+  
+  .myads__sellMenu .right {
+    fill: #3a77ff;
+  }
+  
+  .myads__sellMenu .myads__sellMenuContent {
+    display: flex;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    color: #002f34;
+  }
+  
+  /* .myads__sellMenu .sellMenuContent svg {
+    align-items: center;
+  } */
+  
+  .myads__sellMenu .sellMenuContent span {
+    margin-left: 5px;
+  }
+  

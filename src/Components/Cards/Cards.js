@@ -1,66 +1,71 @@
-import { useHistory } from 'react-router';
-import Heart from '../../assets/Heart';
+import { useHistory, useLocation } from 'react-router';
 import './Cards.css';
-import db from '../../firebase';
+import db, { firebasestorage } from '../../firebase';
 import { useContext, useEffect, useRef, useState } from 'react';
 import { AuthContext } from '../../store/Context';
 
 
 
 const Cards = ({ product }) => {
-  const isMounted = useRef(false);
-  const [favorite, setFavorite] = useState([]);
   const { user } = useContext(AuthContext);
   const history = useHistory();
-  const [error, setError] = useState('');
-  const [favToggle, setFavToggle] = useState(false)
+  const location = useLocation();
+  const imgURL = product.url;
 
 
 
-  // const fetchData = () => {
-  //   db.doc(`/users/${user.uid}`).get().then(res => {
-  //     if (isMounted.current) {
-  //       setFavorite(res.data().favorite)
-  //     }
-  //   }).catch(err => {
-  //     isMounted.current && setError(err)
-  //   })
-  //   if (favorite?.includes(product.id)) {
-  //     setFavToggle(true);
-  //   }
-  // }
-  // useEffect(() => {
-  //   isMounted.current = true;
-  //   fetchData();
-  //   return () => (isMounted.current = false);
-  // }, []);
- 
-  // const favoriteClick = () => {
-  //   setFavToggle(!favToggle)
-  //   if (favorite?.includes(product.id)) {
-  //     const deleteItem = { favorite: favorite.filter(fav => fav !== product.id) }
-  //     db.doc(`/users/${user.uid}`).set(deleteItem, { merge: true })
-  //   } else {
-  //     const data = { favorite: [...favorite, product.id] }
-  //     db.doc(`/users/${user.uid}`).set(data, { merge: true });
-  //   }
-  // }
+
+  const favClick = () => {
+    if (location.pathname == '/myfavorites') {
+      db.collection('users').doc(`${user.uid}`).collection('favorites').doc(`${product.id}`).delete()
+    } else {
+
+      db.collection('users').doc(`${user.uid}`).collection('favorites').doc(`${product.id}`).set({
+        title: product.title,
+        description: product.description,
+        price: product.price,
+        category: product.category,
+        subCategory: product.subCategory,
+        url: product.url,
+        userId: user.uid,
+        date: product.date,
+      });
+    }
+  }
+  const deleteAd = () => {
+    let name = imgURL.substr(imgURL.indexOf('%2F') + 3, (imgURL.indexOf('?')) - (imgURL.indexOf('%2F') + 3));
+    name = name.replace('%20', ' ');
+    firebasestorage.ref().child(`image/${name}`).delete().then(
+      db.collection('products').doc(`${product.id}`).delete()
+    ).catch(console.log('err'))
+  }
+  // let storagePath = firebase.storage().ref();
+  // storagePath.child(`images/${name}`).delete();
+
   return (
 
-    <div className="card__container" >
-      <div className="card__favorite" >
-        <i className={!favToggle ? "bi bi-heart" : "bi bi-heart-fill"}></i>
+    <div key={product.id} className="card__container" >
+      <div className="card__favorite" onClick={favClick} >
+        <i className={"bi bi-heart-fill card__heart"}></i>
       </div>
-      <div onClick={() => history.push(`/item/${product.id}`)} key={product.id} className="card__image">
-        <img src={product.url} alt="" />
+      <div className="card__contents" onClick={() => history.push(`/item/${product.id}`)}>
+        <div className="card__image">
+          <img src={product.url} alt="" />
+        </div>
+        <div className="card__content">
+          <p className="card__rate">&#x20B9; {product.price}</p>
+          <span className="card__kilometer">{product.subCategory}</span>
+          <p className="card__name">{product.title}</p>
+        </div>
+        <div className="card__date">
+          <span>{product.date}</span>
+        </div>
       </div>
-      <div className="card__content">
-        <p className="card__rate">&#x20B9; {product.price}</p>
-        <span className="card__kilometer">{product.subCategory}</span>
-        <p className="card__name">{product.title}</p>
-      </div>
-      <div className="card__date">
-        <span>{product.date}</span>
+      <div className="card__deleteBtn">
+        {
+          (location.pathname == '/myads') &&
+          <i onClick={deleteAd} class="bi bi-trash"></i>
+        }
       </div>
     </div>
   );

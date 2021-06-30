@@ -5,12 +5,11 @@ import Search from '../../assets/Search';
 import Arrow from '../../assets/Arrow';
 import SellButton from '../../assets/SellButton';
 import SellButtonPlus from '../../assets/SellButtonPlus';
-import { useHistory, useLocation, useParams } from 'react-router';
+import { useHistory, useLocation } from 'react-router';
 import { AuthContext } from '../../store/Context';
 import Menu from '../Menu/Menu';
 import Login from '../Login/Login';
-import usePlacesAutocomplete, { getGeocode, getLatLng } from 'use-places-autocomplete';
-import PlaceSearch from '../PlaceSearch/PlaceSearch';
+import { Link } from 'react-router-dom';
 
 
 
@@ -19,16 +18,7 @@ function Header() {
   const history = useHistory();
   const [loginPopOn, setLoginPopOn] = useState(false);
   const location = useLocation();
-
-
-
-
-
-
-
-
-
-
+  const [searchInput, setSearchInput] = useState('')
 
   // const { params } = useParams();
   // useEffect(() => {
@@ -49,7 +39,12 @@ function Header() {
   const handleLogin = () => {
     setLoginPopOn(!loginPopOn);
   }
- 
+  const handleSearch = (e) => {
+    e.preventDefault();
+    history.push(`/search/search?${searchInput}`)
+  }
+
+
   return (
     <div className="headerParentDiv">
       <div className="headerChildDiv">
@@ -61,15 +56,17 @@ function Header() {
           <input type="text" />
           <Arrow></Arrow>
         </div>
-        {/* <PlaceSearch/> */}
-        <div className="productSearch">
-          <input className="productSearch__input"
-            type="text"
-            placeholder="Find car,mobile phone and more..."
-          />
-          <div className="searchAction">
-            <Search color="#ffffff"></Search>
-          </div>
+        <div className="product__SearchContainer">
+          <form className="productSearch" onSubmit={handleSearch} action="">
+            <input className="productSearch__input"
+              type="text"
+              placeholder="Find car,mobile phone and more..."
+              onChange={e => setSearchInput(e.target.value)}
+            />
+            <button type="submit" className="searchAction">
+              <Search color="#ffffff"></Search>
+            </button>
+          </form>
         </div>
         <div className="language">
           <span> ENGLISH </span>

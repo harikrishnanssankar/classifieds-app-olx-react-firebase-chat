@@ -1,19 +1,24 @@
-import React, { Fragment } from 'react';
+import React, { useContext, useEffect } from 'react';
 import './Create.css';
-import Header from '../Components/Header/Header';
 import Create from '../Components/Create/Create';
-import Footer from '../Components/Footer/Footer';
-import { Redirect, useHistory } from 'react-router';
+import { Redirect } from 'react-router';
+import { AuthContext } from '../store/Context';
 
-const CreatePage = ({user}) => {
-  const history = useHistory();
+const CreatePage = () => {
+  const { user } = useContext(AuthContext)
 
-  if(!user){
-    return <Redirect to={{
-      pathname: "/",
-      state: {from: "create"}
-    }} />
-  } 
+  useEffect(() => {
+    
+    if(!user){
+      return <Redirect to={{
+        pathname: "/",
+        state: {from: "create"}
+      }} />
+    } 
+    return () => {
+      
+    }
+  }, [])
   return (
     <div>
       <Create />

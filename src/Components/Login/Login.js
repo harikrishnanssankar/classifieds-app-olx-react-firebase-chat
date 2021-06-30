@@ -4,7 +4,7 @@ import db, { auth } from '../../firebase';
 import Logo from '../../olx-logo.png';
 import './Login.css';
 
-function Login({ setLoginPopOn, loginPopOn }) {
+function Login({ setLoginPopOn }) {
   const [err, setErr] = useState(null);
   const [isSignUp, setIsSignUp] = useState(false);
   const phoneRef = useRef(null);
@@ -36,7 +36,9 @@ function Login({ setLoginPopOn, loginPopOn }) {
           db.doc(`/users/${result.user.uid}`).set({
             id: result.user.uid,
             username: usernameRef.current.value,
-            phone: phoneRef.current.value
+            phone: phoneRef.current.value,
+            createdAt : new Date(),
+            isOnline : true
           }).then(() => {
             setLoginPopOn(false)
             setIsSignUp(false)

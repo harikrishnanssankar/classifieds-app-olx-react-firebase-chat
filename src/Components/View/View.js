@@ -2,9 +2,15 @@ import React, { useContext, useEffect, useRef, useState } from 'react';
 import { useHistory, useLocation, useParams } from 'react-router';
 import db from '../../firebase';
 import { AuthContext } from '../../store/Context';
-import Header from '../Header/Header';
-
 import './View.css';
+import { v4 as uuidv4 } from 'uuid';
+
+
+
+
+
+
+
 function View() {
 
   const [data, setData] = useState({})
@@ -15,10 +21,10 @@ function View() {
   const copyRef = useRef(null);
   const history = useHistory();
   const { user } = useContext(AuthContext);
-  const [userchats, setUserchats] = useState([]);
+  const [userChats, setUserChats] = useState([]);
   const [sellerChats, setSellerChats] = useState([]);
   const [docId, setDocId] = useState([]);
-  const [chatId, setChatId] = useState('nochat')
+  const [userDetails, setUserDetails] = useState([])
 
 
 
@@ -28,13 +34,24 @@ function View() {
       .then(snapshot => {
         setData(snapshot.data());
       });
+  }, [productId])
+  useEffect(() => {
     //fetching seller details
     db.collection('users').where('id', '==', `${data.userId}`).get().then(res => {
       res.forEach(doc => {
         setSellerDetails(doc.data());
       })
     })
-  }, [data.userId, productId])
+    //fetching user details
+    db.collection('users').doc(`${user.uid}`).get().then(res => {
+      setUserDetails(res.data());
+    })
+
+    return () => {
+
+    }
+  }, [data])
+
   useEffect(() => {
     let handler = (event) => {
       {
@@ -55,40 +72,54 @@ function View() {
     )
   }
 
+  // if(docId.length == 0) {db.collection('chat').doc().set({
+  //   users: [`${user.uid}`, `${sellerDetails.id}`]
+  // })}
+  useEffect(() => {
+    if (user) {
+      db.collection("chat").where("users", "array-contains", `${user.uid}`).onSnapshot(res => {
+        setUserChats(res.docs.map(doc => doc.id))
+      })
+      db.collection("chat").where("users", "array-contains", `${sellerDetails.id}`).onSnapshot(res => {
+        setDocId(userChats.filter(value => res.docs.map(doc => doc.id).includes(value)))
+      })
+    }
+
+    return () => {
+
+    }
+  }, [user, sellerDetails])
+
+
   const handleChatClick = () => {
-    db.collection("chat").where("users", "array-contains", `${user.uid}`).get().then(res => {
-      setUserchats(res.docs.map(doc => doc.id))
-    }).then(
-      db.collection("chat").where("users", "array-contains", `${sellerDetails.id}`).get().then(res => {
-        setSellerChats(res.docs.map(doc => doc.id))
-      })).then(
-        setDocId(userchats.filter(value => sellerChats.includes(value)))
-        // setChatId(userchats.filter(value => sellerChats.includes(value))[0])
-        ).then(
-        (docId === 'nochat') && db.collection('chat').doc().set({
-          users: [`${user.uid}`, `${sellerDetails.id}`]
-        }))
-
-      // ).then(history.push(`/chat/${docId[0]}`))
-
-
-
-    //1st try to fetch data
-    // db.collection('chat').where((('user1', '==', `${sellerDetails.id}`) || (`user2`, '==', `${sellerDetails.id}`)) && (('user1', '==', `${user.uid}`) || (`user2`, '==', `${user.uid}`))).get().then(res =>
-    //   console.log(res.id)
-    // )
-
-    //working write to db
-    // db.collection('chat').doc().set({
-    //   user1:user.uid,
-    //   user2:sellerDetails.id
+    // await db.collection('chat').where('users', 'array-contains', `${user.uid}`).get().then(res => {
+    //   setUserchats(res.docs.map(doc => doc.id))
     // })
-    // history.push('/chat')
+    // await db.collection('chat').where('users', 'array-contains', `${sellerDetails.id}`).get().then(res => {
+    //   setSellerChats(res.docs.map(doc => doc.id))
+    //   setDocId(userchats.filter(value => sellerChats.includes(value)));
+    // })
+    // console.log(docId.length);
+    if (user) {
+      const chatId = uuidv4();
+      if (docId.length == 0) {
+        db.collection('chat').doc(`${chatId}`).set({
+          users: [`${user.uid}`, `${sellerDetails.id}`],
+          user1:`${userDetails.username}`,
+          user2:`${sellerDetails.username}`
+        }).then(history.push(`/chat/${chatId}`))
+      } else {
+        history.push(`/chat/${docId[0]}`)
+      }
+    } else {
+      alert('please login')
+    }
   }
 
 
-  // console.log(docId.length);
-  console.log(docId);
+  console.log(data);
+
+
 
 
   return (
@@ -122,7 +153,12 @@ function View() {
               <p>{sellerDetails.username}</p>
             </div>
             <p>{sellerDetails.phone}</p>
-            <button onClick={handleChatClick} className="item__chatBtn">Chat with seller</button>
+            {
+              (user?.uid == sellerDetails.id) ?
+                <button onClick={handleChatClick} disabled className="item__chatBtn">Ask questions your self</button>
+                :
+                <button onClick={handleChatClick} className="item__chatBtn">Chat with seller</button>
+            }
           </div>
           <div className="item__location">
             <p>Posted in</p>

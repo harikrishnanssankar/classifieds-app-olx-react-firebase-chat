@@ -17,7 +17,7 @@ const Menu = ({ user }) => {
       let handler = (event) => {
         {
           (!menuRef.current.contains(event.target)) &&
-          setPopOn(false)
+            setPopOn(false)
         }
       }
       document.addEventListener("mousedown", handler);
@@ -34,7 +34,9 @@ const Menu = ({ user }) => {
   return (
     <div className="menu">
       <div className="user__present">
-        <i className="bi bi-chat"></i>
+        <div onClick={() => history.push('/chat/chatid')}>
+          <i className="bi bi-chat"></i>
+        </div>
         <i className="bi bi-bell"></i>
         <div ref={menuRef} className="popover__container">
           <div onClick={() => setPopOn(!popOn)} className="pop__btn">

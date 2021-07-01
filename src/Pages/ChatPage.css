@@ -1,0 +1,8 @@
+.chatPage__main {
+    padding-top: 100px;
+    min-height: 100vh;
+
+}
+.chatPage__container {
+    display: flex;
+}

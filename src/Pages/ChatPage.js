@@ -12,18 +12,20 @@ const ChatPage = () => {
         <div className="chat__page">
             <Header />
             <div className="chatPage__main">
-
                 {
                     user ?
                         <div className="chatPage__container">
-                            <AllChat />
-                            <Chat />
+                            <div className="chatPage__allChat">
+                                <AllChat />
+                            </div>
+                            <div className="chatPage__chats">
+                                <Chat />
+                            </div>
                         </div>
                         :
                         <h1>No Chat to Display</h1>
                 }
             </div>
-            <Footer />
         </div>
     );
 }

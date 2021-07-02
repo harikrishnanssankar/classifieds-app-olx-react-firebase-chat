@@ -1,8 +1,22 @@
 .chatPage__main {
     padding-top: 100px;
     min-height: 100vh;
-
 }
 .chatPage__container {
     display: flex;
+    justify-content: space-evenly;
+}
+.chatPage__allChat {
+    width: 35%;
+    height: 81vh;
+    border: 1px solid rgba(0, 0, 0, 0.152);
+    border-radius: 7px;
+    background-color: #f8f8f8;
+}
+.chatPage__chats {
+    width: 60%;
+    height: 81vh;
+    border: 1px solid rgba(0, 0, 0, 0.159);
+    border-radius: 7px;
+    margin-left: 20px;
 }

@@ -8,7 +8,6 @@ const CreatePage = () => {
   const { user } = useContext(AuthContext)
 
   useEffect(() => {
-    
     if(!user){
       return <Redirect to={{
         pathname: "/",
@@ -18,7 +17,7 @@ const CreatePage = () => {
     return () => {
       
     }
-  }, [])
+  }, [user])
   return (
     <div>
       <Create />

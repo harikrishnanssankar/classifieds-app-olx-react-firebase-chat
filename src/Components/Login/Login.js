@@ -97,14 +97,14 @@ function Login({ setLoginPopOn }) {
             <i className="bi bi-x-lg"></i>
           </div>
         </div>
-        <img onClick={() => history.push('/')} className="login__logo" src={Logo} />
+        <img onClick={() => history.push('/')} className="login__logo" src={Logo} alt="error loading"/>
         <h3>{!isSignUp ?
           "Login"
           :
           "SignUp"
         }
         </h3>
-        <p className="login__error" >{err && "!" + " " + err}</p>
+        <p className="login__error" >{err && ` !!!  ${err}`}</p>
         <form className="login__form">
           <input
             className="input"

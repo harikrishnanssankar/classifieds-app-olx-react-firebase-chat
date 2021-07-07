@@ -9,17 +9,9 @@ const Category = () => {
     const [category, setCategory] = useState([]);
     const [categoryItem, setCategoryItem] = useState('');
     const [subCategoryItem, setSubCategoryItem] = useState('');
-
-    console.log(categoryItem);
-
-
-
     useEffect(() => {
         db.collection('categories').onSnapshot(snapshot => {
-            snapshot.docs.map(category => {
-                setCategory(category.data())
-            })
-
+            snapshot.docs.map(category => setCategory(category.data()))
         })
     }, [])
 
@@ -57,12 +49,11 @@ const Category = () => {
                 contentLabel="Example Modal"
                 ariaHideApp={false}
             >
-
                 <div className="category__list">
                     {
                         Object.keys(category).map((item, key) => {
                             return (
-                                <div className={'category__listGroup', `${item}`} key={key}>
+                                <div className={`category__listGroup ${item}`} key={key}>
                                     <h6 onClick={() => setCategoryItem(item)} className="category__listTitle">{item}</h6>
                                     {category.[`${item}`].map((res, k) => {
                                         return (
@@ -74,10 +65,6 @@ const Category = () => {
                         })
                     }
                 </div>
-
-
-
-
             </Modal>
         </div>
     );

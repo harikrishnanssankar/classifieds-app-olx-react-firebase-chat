@@ -1,7 +1,7 @@
 import { useHistory, useLocation } from 'react-router';
 import './Cards.css';
 import db, { firebasestorage } from '../../firebase';
-import { useContext, useEffect, useRef, useState } from 'react';
+import { useContext } from 'react';
 import { AuthContext } from '../../store/Context';
 
 
@@ -16,7 +16,7 @@ const Cards = ({ product }) => {
 
 
   const favClick = () => {
-    if (location.pathname == '/myfavorites') {
+    if (location.pathname === '/myfavorites') {
       db.collection('users').doc(`${user.uid}`).collection('favorites').doc(`${product.id}`).delete()
     } else {
 
@@ -63,7 +63,7 @@ const Cards = ({ product }) => {
       </div>
       <div className="card__deleteBtn">
         {
-          (location.pathname == '/myads') &&
+          (location.pathname === '/myads') &&
           <i onClick={deleteAd} class="bi bi-trash"></i>
         }
       </div>

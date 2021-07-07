@@ -1,0 +1,17 @@
+.location__search {
+    height: max-content;
+    background-color: rgba(0, 0, 0, 0);
+}
+.location__input {
+    border: 2px solid black;
+    padding: 4px 2px;
+    border-radius: 5px;
+    background-color: white;
+}
+.location__input :first-child {
+    box-shadow: none;
+}
+.location__map {
+    display: none;
+}
+

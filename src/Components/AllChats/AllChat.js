@@ -6,10 +6,7 @@ import './AllChat.css'
 
 const AllChat = () => {
   const [userChats, setUserChats] = useState([])
-  const [docId, setDocId] = useState([]);
   const { user } = useContext(AuthContext);
-  const [chatNames, setChatNames] = useState([]);
-  const [userNames, setUserNames] = useState([]);
   const history = useHistory();
   const [userDetails, setUserDetails] = useState([]);
   useEffect(() => {

@@ -1,4 +1,4 @@
-.allChat{
+.allChat {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -6,26 +6,28 @@
     margin-left: auto;
     margin-right: auto;
     height: 100%;
-    padding-top: 10px;
+    padding: 10px 10px 0px 10px;
     row-gap: 10px;
     overflow-y: scroll;
+    color: #002f34;
 }
 
 .allChat__container {
     display: flex;
     align-items: center;
     padding: 20px;
-    border: 1px solid rgba(0, 0, 0, 0.193);
     border-radius: 7px;
     width: 100%;
     transition: ease-in 0.15s;
     cursor: pointer;
-    
+    box-shadow: 4px 4px 8px #bbbbbb, -4px -4px 8px #eeeeee;
 }
+
 .allChat__container:hover {
-    background-color: rgb(233, 233, 233);
+    box-shadow: 6px 6px 7px #a9a9a9, -6px -6px 7px #e1e1e1;
     transition: ease-in 0.15s;
 }
+
 .allChat__text {
     margin: 0;
 }

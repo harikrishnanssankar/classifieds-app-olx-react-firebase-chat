@@ -5,14 +5,7 @@ import { AuthContext } from '../../store/Context';
 import './View.css';
 import { v4 as uuidv4 } from 'uuid';
 
-
-
-
-
-
-
 function View() {
-
   const [data, setData] = useState({})
   const { productId } = useParams();
   const location = useLocation();
@@ -22,11 +15,8 @@ function View() {
   const history = useHistory();
   const { user } = useContext(AuthContext);
   const [userChats, setUserChats] = useState([]);
-  const [sellerChats, setSellerChats] = useState([]);
   const [docId, setDocId] = useState([]);
   const [userDetails, setUserDetails] = useState([])
-
-
 
   useEffect(() => {
     //fetching product Details
@@ -50,31 +40,24 @@ function View() {
     return () => {
 
     }
-  }, [data])
-
+  }, [data, user]);
   useEffect(() => {
     let handler = (event) => {
-      {
-        (!copyRef.current.contains(event.target)) &&
-          setCopy('Copy')
-      }
+
+      (!copyRef.current.contains(event.target)) &&
+        setCopy('Copy')
+
     }
     document.addEventListener("mouseout", handler);
     return () => {
       document.removeEventListener("mouseout", handler)
     }
   })
-
-
   const handleCopy = () => {
     navigator.clipboard.writeText("localhost:3000" + location.pathname).then(
       setCopy('Copied!!!')
     )
   }
-
-  // if(docId.length == 0) {db.collection('chat').doc().set({
-  //   users: [`${user.uid}`, `${sellerDetails.id}`]
-  // })}
   useEffect(() => {
     if (user) {
       db.collection("chat").where("users", "array-contains", `${user.uid}`).onSnapshot(res => {
@@ -88,25 +71,17 @@ function View() {
     return () => {
 
     }
-  }, [user, sellerDetails])
+  }, [user, sellerDetails, userChats])
 
 
   const handleChatClick = () => {
-    // await db.collection('chat').where('users', 'array-contains', `${user.uid}`).get().then(res => {
-    //   setUserchats(res.docs.map(doc => doc.id))
-    // })
-    // await db.collection('chat').where('users', 'array-contains', `${sellerDetails.id}`).get().then(res => {
-    //   setSellerChats(res.docs.map(doc => doc.id))
-    //   setDocId(userchats.filter(value => sellerChats.includes(value)));
-    // })
-    // console.log(docId.length);
     if (user) {
       const chatId = uuidv4();
-      if (docId.length == 0) {
+      if (docId.length === 0) {
         db.collection('chat').doc(`${chatId}`).set({
           users: [`${user.uid}`, `${sellerDetails.id}`],
-          user1:`${userDetails.username}`,
-          user2:`${sellerDetails.username}`
+          user1: `${userDetails.username}`,
+          user2: `${sellerDetails.username}`
         }).then(history.push(`/chat/${chatId}`))
       } else {
         history.push(`/chat/${docId[0]}`)
@@ -117,13 +92,7 @@ function View() {
   }
 
 
-  console.log(data);
-
-
-
-
   return (
-
     <div className="item__parentDiv">
       <span>{data.category + ' / ' + data.subCategory}</span>
       <div className="item__details">
@@ -142,7 +111,7 @@ function View() {
               <span>{data.date}</span>
             </div>
             <div ref={copyRef} className="item__share">
-              <i className="item__shareLink" onClick={handleCopy} className="bi bi-share"></i>
+              <i className="bi bi-share item__shareLink" onClick={handleCopy}></i>
               <div className="item__tooltipText">{copy}</div>
             </div>
           </div>
@@ -154,7 +123,7 @@ function View() {
             </div>
             <p>{sellerDetails.phone}</p>
             {
-              (user?.uid == sellerDetails.id) ?
+              (user?.uid === sellerDetails.id) ?
                 <button onClick={handleChatClick} disabled className="item__chatBtn">Ask questions your self</button>
                 :
                 <button onClick={handleChatClick} className="item__chatBtn">Chat with seller</button>

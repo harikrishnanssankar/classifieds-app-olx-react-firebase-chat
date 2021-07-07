@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React from 'react';
 import './App.css';
 import {
   BrowserRouter as Router,
@@ -10,41 +10,25 @@ import {
  * ?  =====Import Components=====
  */
 import Home from './Pages/Home';
-import { AuthContext } from './store/Context';
-import { auth } from './firebase';
 import Create from './Pages/Create';
 import ProductPage from './Pages/ProductPage';
 import MyAdsPage from './Pages/MyAdsPage';
-import Login from './Components/Login/Login';
 import SearchPage from './Pages/SearchPage';
 import PageNotFound from './Pages/PageNotFound';
-import MyAds from './Components/MyAds/MyAds';
-import MyFavorites from './Components/MyFavorites/MyFavorites';
 import ChatPage from './Pages/ChatPage';
-
+import ProfilePage from './Pages/ProfilePage';
+import EditPage from './Pages/EditPage';
+import Maps from './Pages/Maps';
 
 
 
 
 function App() {
-  // const { user, setUser } = useContext(AuthContext);
-  // useEffect(() => {
-  //   const authUser = JSON.parse(localStorage.getItem('user'))
-  //   setUser(authUser)
-  // },[])
-  // useEffect(() => {
-  //   auth.onAuthStateChanged((user) => {
-  //     user? localStorage.setItem('user', JSON.stringify(user))
-  //     : localStorage.removeItem('user')
-  //   });
-
-  // });
-
   return (
     <div>
       <Router>
         <Switch>
-          <Route exact path='/' exact>
+          <Route exact path='/'>
             <Home />
           </Route>
           <Route exact path="/create">
@@ -56,9 +40,12 @@ function App() {
           <Route path="/search/:searchId">
             <SearchPage />
           </Route>
-          <Route path='/myads' component={MyAdsPage}/>
-          <Route path='/myfavorites' component={MyAdsPage}/>
-          <Route path='/chat/:chatId' component={ChatPage}/>
+          <Route path='/myads' component={MyAdsPage} />
+          <Route path='/myfavorites' component={MyAdsPage} />
+          <Route path='/chat/:chatId' component={ChatPage} />
+          <Route path='/myprofile' component={ProfilePage} />
+          <Route path='/editprofile/:editInfo' component={EditPage} />
+          <Route path='/maps' component={Maps} />
           <Route component={PageNotFound} path='*' />
         </Switch>
       </Router>

@@ -1,7 +1,6 @@
 import { useContext } from "react";
 import AllChat from "../Components/AllChats/AllChat";
 import Chat from "../Components/Chat/Chat";
-import Footer from "../Components/Footer/Footer"
 import Header from "../Components/Header/Header"
 import { AuthContext } from "../store/Context";
 import "./ChatPage.css"

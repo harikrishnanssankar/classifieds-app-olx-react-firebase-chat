@@ -1,20 +1,20 @@
 .card__container {
     padding: 13px;
-    width: 222px;
-    min-height: 270px;
+    width: 240px;
+    height: 270px;
     display: flex;
     flex-direction: column;
     border: 1px solid rgba(4, 37, 79, 0.152);
     border-radius: 5px;
-    max-height: 310px;
+    background-color: white;
   }
   .card__heart {
     color: rgb(255, 255, 255);
-    text-shadow: 0px 0px 2px  #000;
+    text-shadow: 0px 0px 2px rgb(0, 0, 0);
   }
   .card__heart:hover {
-    color: rgb(58, 58, 58);
-    text-shadow: 0px 0px 5px  rgb(49, 49, 49);
+    color: rgb(0, 0, 0);
+    text-shadow: 0px 0px 1px  rgb(49, 49, 49);
   }
  .card__favorite {
     display: flex;
@@ -45,6 +45,7 @@
     margin-top: 10px;
     font-size: larger;
     font-weight: bold;
+    margin-bottom: 0;
   }
   .card__kilometer {
     font-size: medium;

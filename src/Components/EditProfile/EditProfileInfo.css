@@ -1,0 +1,115 @@
+.edit__profileInfo > h5 {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.337);
+    padding-bottom: 15px;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+.editProfile__basicInfo {
+    display: flex;
+    flex-direction: column;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.337);
+}
+.editProfile__basicInfo > h6 {
+    font-weight: 600;
+    padding-bottom: 10px;
+
+}
+.editProfile__basicInfo > input, textarea {
+    padding: 8px 10px;
+    border-radius: 5px;
+    outline: none;
+    border: 1px solid #002f3458;
+    margin-bottom: 30px;
+    width: 400px;
+    max-width: 95%;
+}
+.editProfile__basicInfo > input:focus, textarea:focus{
+    box-shadow: inset 0 0 1px 2px #005059;
+}
+.editProfile__contactInfo {
+    display: flex;
+    flex-direction: column;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.337);
+    padding-top: 20px;
+}
+.editProfile__contactInfo > h6 {
+    font-weight: 600;
+    padding-bottom: 10px;
+}
+.editProfile__contactInfo > input {
+    padding: 8px 10px;
+    border-radius: 5px;
+    outline: none;
+    border: 1px solid #002f3458;
+    margin-bottom: 30px;
+    width: 400px;
+    max-width: 95%;
+}
+.editProfile__contactInfo > span {
+    font-size: large;
+    border: 1px solid black;
+    border: 1px solid #002f3458;
+    margin-bottom: 20px;
+    padding: 7px 10px;
+    width: 400px;
+    max-width: 95%;
+    border-radius: 5px;
+}
+.editProfile__contactInfo > span:hover {
+    cursor: pointer;
+}
+.editProfile__btn {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+    margin-top: 20px;
+    margin-bottom: 5px;
+}
+
+.editProfile__btn > button {
+    border: none;
+    background-color: #005059;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 5px;
+}
+
+.editProfile__successModel{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    margin: auto;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    width: 500px;
+    max-width: 95%;
+    height: max-content;
+    padding: 25px;
+    border-radius: 5px;
+    outline: none;
+    background-color: rgb(255, 255, 255);
+    box-shadow: 1px 2px 6px 1px rgba(87, 87, 87, 0.44);
+}
+.editProfile__success{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.editProfile__success > h3 {
+    font-weight: 600;
+    color: #002f34;
+}
+.editProfile__success > p {
+    margin-bottom: 0;
+    background-color: #005059;
+    color: white;
+    padding: 6px 30px;
+    margin-top: 10px;
+    border-radius: 5px;
+}
+.editProfile__success > p:hover {
+    cursor: pointer;
+}

@@ -16,9 +16,10 @@ import MyAdsPage from './Pages/MyAdsPage';
 import SearchPage from './Pages/SearchPage';
 import PageNotFound from './Pages/PageNotFound';
 import ChatPage from './Pages/ChatPage';
-import ProfilePage from './Pages/ProfilePage';
+import MyProfilePage from './Pages/MyProfilePage';
 import EditPage from './Pages/EditPage';
 import Maps from './Pages/Maps';
+import SellerProfile from './Pages/SellerProfile';
 
 
 
@@ -43,8 +44,9 @@ function App() {
           <Route path='/myads' component={MyAdsPage} />
           <Route path='/myfavorites' component={MyAdsPage} />
           <Route path='/chat/:chatId' component={ChatPage} />
-          <Route path='/myprofile' component={ProfilePage} />
+          <Route path='/myprofile' component={MyProfilePage} />
           <Route path='/editprofile/:editInfo' component={EditPage} />
+          <Route path='/profile/:profileId' component={SellerProfile} />
           <Route path='/maps' component={Maps} />
           <Route component={PageNotFound} path='*' />
         </Switch>

@@ -32,11 +32,12 @@ const AllChat = () => {
         setUserChats(allChats);
       })
     }
-
+    
     return () => {
-
+      
     }
   }, [user])
+
 
   return (
     <div className="allChat">
@@ -44,7 +45,7 @@ const AllChat = () => {
         userChats.map(userChat => {
           return (
             <div className="allChat__container" onClick={() => history.push(`/chat/${userChat.id}`)} key={userChat.id}>
-              {(userChat.user1 === userDetails.username) ? <h5 className="allChat__text">{userChat.user2}</h5> : <h5 className="allChat__text">{userChat.user1}</h5>}
+              {((userChat.user1 === userDetails.username) ||(userChat.user1 === user.displayName)) ? <h5 className="allChat__text">{userChat.user2}</h5> : <h5 className="allChat__text">{userChat.user1}</h5>}
             </div>
           )
         })

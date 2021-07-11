@@ -24,7 +24,8 @@ const options = {
         "title",
         "category",
         "subCategory",
-        "description"
+        "description",
+        "place.value"
     ]
 };
 const SearchPage = () => {

@@ -1,10 +1,10 @@
-import './ProfilePage.css';
+import './MyProfilePage.css';
 import Header from '../Components/Header/Header';
 import Profile from '../Components/Profile/Profile';
 import Footer from '../Components/Footer/Footer';
 import Category from '../Components/Category/Category';
 
-const ProfilePage = () => {
+const MyProfilePage = () => {
     return (
         <div className="profile__page">
             <Header/>
@@ -15,4 +15,4 @@ const ProfilePage = () => {
     );
 }
 
-export default ProfilePage;
+export default MyProfilePage;

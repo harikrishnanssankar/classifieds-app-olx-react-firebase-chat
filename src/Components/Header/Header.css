@@ -30,6 +30,15 @@
   border-radius: 4px;
   background-color: white;
 }
+.placeSearch > button {
+ background-color: rgba(255, 255, 255, 0);
+ border: none; 
+ padding: 5px;
+}
+.placeSearch > input {
+  width: 100%;
+}
+
 
 .placeSearch ::selection {
   border-color: #23e5db;

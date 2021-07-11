@@ -1,5 +1,5 @@
 import { useContext, useEffect, useRef, useState } from "react";
-import { useParams } from "react-router";
+import { useHistory, useParams } from "react-router";
 import db from "../../firebase";
 import { AuthContext } from "../../store/Context";
 import "./Chat.css";
@@ -13,7 +13,8 @@ const Chat = () => {
     const [userDetails, setUserDetails] = useState([]);
     const [messages, setMessages] = useState([]);
     const messagesEndRef = useRef(null);
-    const [forbidden, setForbidden] = useState(true)
+    const [forbidden, setForbidden] = useState(true);
+    const history = useHistory();
 
     //finding if the user has access to that particular chat
     //to forbade those without
@@ -99,8 +100,16 @@ const Chat = () => {
         <div className="chat__main">
             {
                 ((chatId !== 'chatid') && !forbidden) &&
-                <div className="chat__header">
-                    {(userNames.user1 === userDetails.username) ? <h4>{userNames.user2}</h4> : <h4>{userNames.user1}</h4>}
+                <div
+                    onClick={() => {
+                        (user.uid !== userId[0]) ?
+                            history.push(`/profile/${userId[0]}`)
+                            :
+                            history.push(`/profile/${userId[1]}`)
+                    }}
+                    className="chat__header"
+                >
+                    {((userNames.user1 === userDetails.username) || (userNames.user1 === user.displayName)) ? <h4>{userNames.user2}</h4> : <h4>{userNames.user1}</h4>}
                 </div>
             }
             {

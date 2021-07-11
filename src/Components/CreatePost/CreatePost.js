@@ -4,12 +4,16 @@ import { v4 as uuidv4 } from 'uuid';
 import { useContext, useRef, useState } from "react";
 import { useHistory } from "react-router";
 import { AuthContext } from '../../store/Context';
+import LocationAutocomplete from "../LocationAutocomplete/LocationAutocomplete";
+import { useEffect } from "react";
 
 const CreatePost = ({ category, subCategory, setSubCategory, }) => {
     //Context
     const { user } = useContext(AuthContext);
     //useState
     const [image, setImage] = useState();
+    const [userDetails, setUserDetails] = useState([]);
+    const [place, setPlace] = useState({});
     //useRefs
     const titleRef = useRef(null);
     const descriptionRef = useRef(null);
@@ -18,6 +22,14 @@ const CreatePost = ({ category, subCategory, setSubCategory, }) => {
     const history = useHistory();
     //Date
     const date = new Date();
+    useEffect(() => {
+        db.collection('users').doc(`${user.uid}`).get().then(res => {
+            setUserDetails(res.data())
+        })
+    }, [user])          
+
+
+
     //functions
     const handleSubmit = () => {
         firebasestorage.ref(`/image/${uuidv4()}-${image.name}`).put(image).then(({ ref }) => {
@@ -30,13 +42,17 @@ const CreatePost = ({ category, subCategory, setSubCategory, }) => {
                     subCategory,
                     url,
                     userId: user.uid,
-                    date: date.toDateString()
+                    date: new Date(),
+                    phone:userDetails.phone,
+                    username: userDetails.username,
+                    place:place,
                 });
                 alert('Ad Posted Successfully')
                 history.push('/')
             })
         })
     }
+    
     return (
         <div className="post__container">
             <h6>SELECTED CATEGORY</h6>
@@ -64,6 +80,12 @@ const CreatePost = ({ category, subCategory, setSubCategory, }) => {
                     <label className="custom-file-label" htmlfor="inputGroupFile02" aria-describedby="inputGroupFileAddon02">Choose file</label>
                 </div>
             </div>
+            <div className="post__location">
+                <h5>CONFIRM YOUR LOCATION</h5>
+                <div>
+                    <LocationAutocomplete setPlace={setPlace} place={place} />
+                </div>
+            </div>
             <div className="post__userDetails">
                 <h5>REVIEW YOUR DETAILS</h5>
                 <div>
@@ -71,10 +93,10 @@ const CreatePost = ({ category, subCategory, setSubCategory, }) => {
                     <div>
                         <div>
                             <span>Name : </span>
-                            <span>{user.displayName}</span>
+                            <span>{userDetails.userame}</span>
                         </div>
                         <div>
-                            <span>Your phone number</span>
+                            <span>Phone No:{userDetails?.phone}</span>
                             <span></span>
                         </div>
                     </div>

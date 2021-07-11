@@ -9,7 +9,7 @@ import { useHistory, useLocation } from 'react-router';
 import { AuthContext } from '../../store/Context';
 import Menu from '../Menu/Menu';
 import Login from '../Login/Login';
-import Maps from '../../Pages/Maps';
+
 
 
 
@@ -18,9 +18,10 @@ function Header() {
   const history = useHistory();
   const [loginPopOn, setLoginPopOn] = useState(false);
   const location = useLocation();
-  const [searchInput, setSearchInput] = useState('')
+  const [searchInput, setSearchInput] = useState('');
+  const [locationSearch, setLocationSearch] = useState('');
 
-  
+
   useEffect(() => {
     if (location?.state?.from === 'create') {
       setLoginPopOn(true)
@@ -35,7 +36,11 @@ function Header() {
   }
   const handleSearch = (e) => {
     e.preventDefault();
-    history.push(`/search/search?${searchInput}`)
+    history.push(`/search/search?${searchInput} ${locationSearch}`)
+  }
+  const handleLocationSearch = (e) => {
+    e.preventdefault();
+    history.push(`/search/search?${searchInput} ${locationSearch}`)
   }
 
 
@@ -45,12 +50,12 @@ function Header() {
         <div onClick={() => history.push('/')} className="brandName">
           <OlxLogo />
         </div>
-        {/* <div className="placeSearch">
-          <Search></Search>
-          <input type="text" />
-          <Arrow></Arrow>
-        </div> */}
-        <Maps/>
+        <form className="placeSearch" onSubmit={handleSearch} action="">
+          <button type="submit">
+            <Search></Search>
+          </button>
+          <input placeholder="Search for places.." onChange={e => setLocationSearch(e.target.value)} type="text" />
+        </form>
         <div className="product__SearchContainer">
           <form className="productSearch" onSubmit={handleSearch} action="">
             <input className="productSearch__input"

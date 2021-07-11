@@ -13,7 +13,8 @@ const Posts = () => {
       const allPost = snapshot.docs.map((product) => {
         return {
           ...product.data(),
-          id: product.id
+          id: product.id,
+          createdAt: product.data().date.toDate().toLocaleString('en-IN', { hour: 'numeric', minute: 'numeric', second: 'numeric', hour12: true, day: 'numeric', month: 'numeric', year: 'numeric' }),
         }
       })
       setProducts(allPost)

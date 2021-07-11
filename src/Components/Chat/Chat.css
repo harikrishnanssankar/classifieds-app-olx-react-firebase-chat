@@ -15,6 +15,9 @@
     position: relative;
     top: 0;
 }
+.chat__header:hover {
+    cursor: pointer;
+}
 .chat__header >h4 {
     margin: 0;
 }

@@ -3,12 +3,14 @@ import './Category.css'
 import Modal from 'react-modal';
 import { useEffect, useState } from "react";
 import db from "../../firebase";
+import { useHistory } from "react-router";
 
 const Category = () => {
     const [modalIsOpen, setIsOpen] = useState(false);
     const [category, setCategory] = useState([]);
     const [categoryItem, setCategoryItem] = useState('');
     const [subCategoryItem, setSubCategoryItem] = useState('');
+    const history = useHistory();
     useEffect(() => {
         db.collection('categories').onSnapshot(snapshot => {
             snapshot.docs.map(category => setCategory(category.data()))
@@ -57,7 +59,7 @@ const Category = () => {
                                     <h6 onClick={() => setCategoryItem(item)} className="category__listTitle">{item}</h6>
                                     {category.[`${item}`].map((res, k) => {
                                         return (
-                                            <h6 className="category__listContent" onClick={() => setSubCategoryItem(res)} key={k}>{res}</h6>
+                                            <h6 className="category__listContent" onClick={() => history.push(`/search/search?${res}`)} key={k}>{res}</h6>
                                         )
                                     })}
                                 </div>

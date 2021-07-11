@@ -58,7 +58,7 @@ const Cards = ({ product }) => {
           <p className="card__name">{product.title}</p>
         </div>
         <div className="card__date">
-          <span>{product.date}</span>
+          <span>{product.createdAt}</span>
         </div>
       </div>
       <div className="card__deleteBtn">

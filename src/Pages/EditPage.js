@@ -4,6 +4,7 @@ import EditProfileInfo from "../Components/EditProfile/EditProfileInfo";
 import EditProfilePicture from "../Components/EditProfilePicture/EditProfilePicture";
 import Footer from "../Components/Footer/Footer"
 import Header from "../Components/Header/Header"
+import './EditPage.css'
 
 
 
@@ -17,13 +18,17 @@ const EditPage = () => {
             <Header />
             <Category />
             <div className="editPage__main">
-                <div className="editPge__links">
-                    <p onClick={() => history.push('/editprofile/info')}>Edit Profile</p>
-                    <p onClick={() => history.push('/editprofile/picture')} > Profile Picture</p>
+                <div className="editPage__links">
+                    <p className={(editInfo === 'info') ? 'editPage__activeLink' : 'editPage__link'} onClick={() => history.push('/editprofile/info')}>Edit Profile</p>
+                    <p className={(editInfo === 'picture') ? 'editPage__activeLink' : 'editPage__link'} onClick={() => history.push('/editprofile/picture')} > Profile Picture</p>
+                    <button onClick={() => history.push('/myProfile')} >View Profile</button>
                 </div>
                 <div className="editPage__contents">
-
-                    {(editInfo === 'info') && <EditProfileInfo />}
+                    {
+                        (editInfo === 'info')
+                        &&
+                        <EditProfileInfo />
+                    }
                     {(editInfo === 'picture') && <EditProfilePicture />}
                 </div>
             </div>

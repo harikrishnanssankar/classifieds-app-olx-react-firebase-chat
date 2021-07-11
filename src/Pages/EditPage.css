@@ -1,0 +1,46 @@
+.editPage__main {
+    display: flex;
+    padding: 40px 40px;
+    min-height: 85vh;
+}
+.editPage__links {
+    width: 25%;
+    padding: 10px;
+}
+.editPage__link {
+    margin: 0;
+    padding-bottom: 20px;
+    color: rgb(104, 104, 104);
+}
+.editPage__activeLink {
+    font-weight: 600;
+    color: #002f34;
+}
+.editPage__links > p:hover {
+    cursor: pointer;
+}
+.editPage__links > button {
+    background-color: rgba(255, 255, 255, 0);
+    color: #002f34;
+    padding: 7px 12px;
+    height: max-content;
+    border-radius: 5px;
+    border: 3px solid #002f34;
+    margin: 0;
+    font-size: small;
+    font-weight: 600;
+    width: 100%;
+    
+}
+
+.editPage__links > button:hover {
+    box-shadow:inset 0px 0px 1px 1px #002f34;
+    cursor: pointer;
+}
+.editPage__contents {
+    width: 75%;
+    border: 1px solid #002f3452;
+    border-radius: 7px;
+    padding: 20px;
+    
+}

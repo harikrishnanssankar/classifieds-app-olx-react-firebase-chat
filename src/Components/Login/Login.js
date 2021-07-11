@@ -38,7 +38,7 @@ function Login({ setLoginPopOn }) {
             username: usernameRef.current.value,
             phone: phoneRef.current.value,
             createdAt : new Date(),
-            isOnline : true
+            about:null
           }).then(() => {
             setLoginPopOn(false)
             setIsSignUp(false)

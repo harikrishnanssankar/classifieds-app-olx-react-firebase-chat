@@ -3,53 +3,78 @@ import Heart from '../../assets/Heart';
 import './Post.css';
 import db from '../../firebase';
 import Cards from '../Cards/Cards';
+import PacmanLoader from "react-spinners/PacmanLoader";
+
 
 
 const Posts = () => {
-  // const history = useHistory();
-  const [products, setProducts] = useState([])
+  const [products, setProducts] = useState([]);
+  const [shuffled, setShuffled] = useState([]);
+  const [lastKey, setLastKey] = useState();
+  const [loading, setLoading] = useState(false);
+  const [isEmpty, setIsEmpty] = useState(false);
+
+
+  const fetchRef = db.collection('products').orderBy("date", "desc");
+
   useEffect(() => {
-    db.collection('products').get().then(snapshot => {
-      const allPost = snapshot.docs.map((product) => {
-        return {
-          ...product.data(),
-          id: product.id,
-          createdAt: product.data().date.toDate().toLocaleString('en-IN', { hour: 'numeric', minute: 'numeric', second: 'numeric', hour12: true, day: 'numeric', month: 'numeric', year: 'numeric' }),
-        }
-      })
-      setProducts(allPost)
+    fetchRef.limit(3).get().then(snapshot => {
+      const isCollectionEmpty = snapshot.size === 0;
+      if (!isCollectionEmpty) {
+        const allPost = snapshot.docs.map((product) => {
+          return {
+            ...product.data(),
+            id: product.id,
+            createdAt: product.data().date.toDate().toLocaleString('en-IN', { hour: 'numeric', minute: 'numeric', second: 'numeric', hour12: true, day: 'numeric', month: 'numeric', year: 'numeric' }),
+          }
+        })
+        const lastDoc = snapshot.docs[snapshot.docs.length - 1];
+        setProducts(allPost)
+        setShuffled(allPost.slice(0, allPost.length).sort(() => Math.random() - 0.5).slice(0, 2))
+        setLastKey(lastDoc)
+      } else {
+        setIsEmpty(true)
+      }
     })
-  },[])
+  }, [])
+
+
+  const fetchMore = () => {
+    setLoading(true);
+    fetchRef.startAfter(lastKey).get()
+      .then(snapshot => {
+        const isCollectionEmpty = snapshot.size === 0;
+        if (!isCollectionEmpty) {
+          const allPost = snapshot.docs.map((product) => {
+            return {
+              ...product.data(),
+              id: product.id,
+              createdAt: product.data().date.toDate().toLocaleString('en-IN', { hour: 'numeric', minute: 'numeric', second: 'numeric', hour12: true, day: 'numeric', month: 'numeric', year: 'numeric' }),
+            }
+          })
+          const lastDoc = snapshot.docs[snapshot.docs.length - 1];
+          setProducts(products => [...products, ...allPost])
+          setLastKey(lastDoc);
+        } else {
+          setIsEmpty(true)
+        }
+        setLoading(false);
+      })
+  }
 
 
 
   return (
-    <div className="postParentDiv">
+    <div className="post__ParentDiv">
       <div className="moreView">
-        <div className="heading">
+        <div className="post__heading">
           <span>Quick Menu</span>
-          <span>View more</span>
+          <span>View more <i className="bi bi-chevron-right"></i></span>
         </div>
         <div className="post__cards">
           {
-            products.map(product => {
+            shuffled.map(product => {
               return (
-                // <div onClick={()=> history.push(`/item/${product.id}`)} key={product.id} className="card" >
-                //   <div className="favorite">
-                //     <Heart></Heart>
-                //   </div>
-                //   <div className="image">
-                //     <img src={product.url} alt="" />
-                //   </div>
-                //   <div className="content">
-                //     <p className="rate">&#x20B9; {product.price}</p>
-                //     <span className="kilometer">{product.subCategory}</span>
-                //     <p className="name">{product.title}</p>
-                //   </div>
-                //   <div className="date">
-                //     <span>{product.date}</span>
-                //   </div>
-                // </div>
                 <div className="post__card" key={product.id}>
                   <Cards product={product} />
                 </div>
@@ -58,29 +83,32 @@ const Posts = () => {
           }
         </div>
       </div>
-      <div className="recommendations">
-        <div className="heading">
-          <span>Fresh recommendations</span>
+      <div className="post__recommendations">
+        <h4>Fresh recommendations</h4>
+        <div className="post__freshCards">
+          {
+            products.map(product => {
+              return (
+                <div className="post__card" key={product.id}>
+                  <Cards product={product} />
+                </div>
+              )
+            })
+          }
         </div>
-        <div className="cards">
-          <div className="card">
-            <div className="favorite">
-              <Heart></Heart>
-            </div>
-            <div className="image">
-              <img src="../../../Images/R15V3.jpg" alt="" />
-            </div>
-            <div className="content">
-              <p className="rate">&#x20B9; 250000</p>
-              <span className="kilometer">Two Wheeler</span>
-              <p className="name"> YAMAHA R15V3</p>
-            </div>
-            <div className="date">
-              <span>10/5/2021</span>
-            </div>
-          </div>
-        </div>
+        {
+          !loading && !isEmpty && <button className="post__loadmoreBtn" onClick={fetchMore}>Load More</button>
+        }
+        {
+          isEmpty && <h5 className="post__loadmoreEnd">You have reached the end of world!!!</h5>
+        }
       </div>
+      {
+        loading &&
+        <div className="post__loadingComponent">
+          <PacmanLoader color={'#006772 '} loading={loading} size={25} />
+        </div>
+      }
     </div>
   );
 }

@@ -39,11 +39,12 @@ const Cards = ({ product }) => {
       db.collection('products').doc(`${product.id}`).delete()
     ).catch(console.log('err'))
   }
-  // let storagePath = firebase.storage().ref();
-  // storagePath.child(`images/${name}`).delete();
+  
+  const truncate = (string, n) => {
+    return string && string.length > n ? string.substr(0, n - 1) + '...' : string;
+}
 
   return (
-
     <div key={product.id} className="card__container" >
       <div className="card__favorite" onClick={favClick} >
         <i className={"bi bi-heart-fill card__heart"}></i>
@@ -54,8 +55,8 @@ const Cards = ({ product }) => {
         </div>
         <div className="card__content">
           <p className="card__rate">&#x20B9; {product.price}</p>
-          <span className="card__kilometer">{product.subCategory}</span>
-          <p className="card__name">{product.title}</p>
+          <span className="card__kilometer">{truncate(product.subCategory, 24)}</span>
+          <p className="card__name">{truncate(product.title, 30)}</p>
         </div>
         <div className="card__date">
           <span>{product.createdAt}</span>
@@ -64,7 +65,10 @@ const Cards = ({ product }) => {
       <div className="card__deleteBtn">
         {
           (location.pathname === '/myads') &&
-          <i onClick={deleteAd} class="bi bi-trash"></i>
+          <>
+          <i onClick={() => history.push(`/editpost/${product.id}`)} className="bi bi-pencil-square"></i>
+          <i onClick={deleteAd} className="bi bi-trash"></i>
+          </>
         }
       </div>
     </div>

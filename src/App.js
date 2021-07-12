@@ -18,8 +18,8 @@ import PageNotFound from './Pages/PageNotFound';
 import ChatPage from './Pages/ChatPage';
 import MyProfilePage from './Pages/MyProfilePage';
 import EditPage from './Pages/EditPage';
-import Maps from './Pages/Maps';
 import SellerProfile from './Pages/SellerProfile';
+import EditPostPage from './Pages/EditPostPage';
 
 
 
@@ -47,7 +47,7 @@ function App() {
           <Route path='/myprofile' component={MyProfilePage} />
           <Route path='/editprofile/:editInfo' component={EditPage} />
           <Route path='/profile/:profileId' component={SellerProfile} />
-          <Route path='/maps' component={Maps} />
+          <Route path='/editpost/:postId' component={EditPostPage} />
           <Route component={PageNotFound} path='*' />
         </Switch>
       </Router>

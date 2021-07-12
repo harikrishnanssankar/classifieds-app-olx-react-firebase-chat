@@ -58,6 +58,10 @@ const SearchPage = () => {
         <div className="search__page">
             <Header />
             <Category/>
+            <div className="search__heading">
+                <h3>Showing Results for {searchText}</h3>
+                <h6>{result.length} results found</h6>
+            </div>
             <div className="post__cards">
                 {
                     result.map(product => {

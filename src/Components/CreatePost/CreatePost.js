@@ -20,8 +20,6 @@ const CreatePost = ({ category, subCategory, setSubCategory, }) => {
     const priceRef = useRef(null);
     //useHistory
     const history = useHistory();
-    //Date
-    const date = new Date();
     useEffect(() => {
         db.collection('users').doc(`${user.uid}`).get().then(res => {
             setUserDetails(res.data())

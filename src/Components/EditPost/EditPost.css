@@ -1,0 +1,36 @@
+.editPost__container {
+    display: flex;
+    flex-direction: column;
+    width: 600px;
+    max-width: 95%;
+    margin: auto;
+    border: 1px solid #002f344f;
+    padding: 20px;
+    border-radius: 5px;
+    margin-bottom: 30px;
+}
+
+
+
+
+
+
+.editPost__uploading {
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    margin: auto;
+    left: 0;
+    right: 0;
+    top: 0;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.2);
+
+}
+.editPost__uploading > h3 {
+    margin: 0;
+    color: #005059;
+    font-weight: 600;
+}

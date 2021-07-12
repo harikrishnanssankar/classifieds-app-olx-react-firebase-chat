@@ -27,6 +27,8 @@ function Header() {
       setLoginPopOn(true)
     }
   }, [location?.state?.from])
+
+  
   const handleSellClick = () => {
     (user ? history.push('/create') : setLoginPopOn(true))
   }
@@ -36,10 +38,6 @@ function Header() {
   }
   const handleSearch = (e) => {
     e.preventDefault();
-    history.push(`/search/search?${searchInput} ${locationSearch}`)
-  }
-  const handleLocationSearch = (e) => {
-    e.preventdefault();
     history.push(`/search/search?${searchInput} ${locationSearch}`)
   }
 
@@ -54,11 +52,12 @@ function Header() {
           <button type="submit">
             <Search></Search>
           </button>
-          <input placeholder="Search for places.." onChange={e => setLocationSearch(e.target.value)} type="text" />
+          <input value={locationSearch} placeholder="Search for places.." onChange={e => setLocationSearch(e.target.value)} type="text" />
         </form>
         <div className="product__SearchContainer">
           <form className="productSearch" onSubmit={handleSearch} action="">
             <input className="productSearch__input"
+            value={searchInput}
               type="text"
               placeholder="Find car,mobile phone and more..."
               onChange={e => setSearchInput(e.target.value)}

@@ -13,13 +13,28 @@ const Chat = () => {
     const [userDetails, setUserDetails] = useState([]);
     const [messages, setMessages] = useState([]);
     const messagesEndRef = useRef(null);
-    const [forbidden, setForbidden] = useState(true);
+    const [forbidden, setForbidden] = useState(false);
     const history = useHistory();
+    const [loading, setLoading] = useState(false)
+
+      //fetching user IDs from chat
+      useEffect(() => {
+        setLoading(true)
+        db.collection("chat").doc(`${chatId}`).get().then(res => {
+            setUserId(
+                res.data()?.users
+            )
+        })
+        setLoading(false);
+        return () => {
+
+        }
+    }, [chatId, user])
 
     //finding if the user has access to that particular chat
     //to forbade those without
     useEffect(() => {
-        (userId?.includes(user.uid)) ? setForbidden(false) : setForbidden(true);
+        (userId?.includes(user?.uid)) ? setForbidden(false) : setForbidden(true);
         return () => {
         }
     }, [user, userId]);
@@ -44,7 +59,7 @@ const Chat = () => {
 
     //fetching userDetails from users
     useEffect(() => {
-        db.collection('users').doc(`${user.uid}`).get().then(res => {
+        db.collection('users').doc(`${user?.uid}`).get().then(res => {
             setUserDetails(res.data())
         })
         return () => {
@@ -63,17 +78,7 @@ const Chat = () => {
 
         }
     }, [chatId, user])
-    //fetching user IDs from chat
-    useEffect(() => {
-        db.collection("chat").doc(`${chatId}`).get().then(res => {
-            setUserId(
-                res.data()?.users
-            )
-        })
-        return () => {
-
-        }
-    }, [chatId, user])
+  
 
     //to place the scrollbar of chat container always at bottom
     const scrollToBottom = () => {
@@ -144,6 +149,9 @@ const Chat = () => {
                     <input onChange={(e) => setText(e.target.value)} className="chat__input" type="text" value={text} placeholder="Start typing" />
                     <i onClick={sendText} className="bi bi-telegram"></i>
                 </form>
+            }
+            {
+             <h2 className="chat__loading" >Loading</h2>
             }
         </div>
     );

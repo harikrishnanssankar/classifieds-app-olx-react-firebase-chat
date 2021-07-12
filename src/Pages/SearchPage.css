@@ -1,0 +1,11 @@
+.search__heading {
+    padding: 25px 35px;
+}
+.post__cards {
+    padding: 0 35px;
+}
+.post__card {
+    display: flex;
+    flex-wrap: wrap;
+
+}

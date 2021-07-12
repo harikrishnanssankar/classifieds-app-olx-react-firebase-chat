@@ -10,7 +10,7 @@ const AllChat = () => {
   const history = useHistory();
   const [userDetails, setUserDetails] = useState([]);
   useEffect(() => {
-    db.collection('users').doc(`${user.uid}`).get().then(res => {
+    db.collection('users').doc(`${user?.uid}`).get().then(res => {
       setUserDetails(res.data())
     })
     return () => {

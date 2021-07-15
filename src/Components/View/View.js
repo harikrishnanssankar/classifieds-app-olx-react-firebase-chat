@@ -56,7 +56,7 @@ function View() {
     }
   })
   const handleCopy = () => {
-    navigator.clipboard.writeText("localhost:3000" + location.pathname).then(
+    navigator.clipboard.writeText(location.pathname).then(
       setCopy('Copied!!!')
     )
   }
@@ -103,65 +103,60 @@ function View() {
     }
   }
 
-
   return (
 
     <div className="item__container">
       <span>{data.category + ' / ' + data.subCategory}</span>
       <div className="item__parentDiv">
-        <div className="item__leftContainer">
-          <div className="item__img">
-            <img
-              src={data.url}
-              alt="error loading"
-            />
+        <div className="item__img">
+          <img
+            src={data.url}
+            alt="error loading"
+          />
+        </div>
+        <div className="item__productDescription">
+          <div>
+            <p className="item__price">&#x20B9; {data.price} </p>
+            <span>{data.title}</span>
+            <p>{data.subCategory}</p>
+            <span>{date}</span>
           </div>
-          <div className="item__moreInfo">
-            <h5>Description</h5>
-            <p>{data.description}</p>
+          <div ref={copyRef} className="item__share">
+            <i className="bi bi-share item__shareLink" onClick={handleCopy}></i>
+            <div className="item__tooltipText">{copy}</div>
           </div>
         </div>
-        <div className="item__description">
-          <div className="item__productDescription">
-            <div>
-              <p className="item__price">&#x20B9; {data.price} </p>
-              <span>{data.title}</span>
-              <p>{data.subCategory}</p>
-              <span>{date}</span>
-            </div>
-            <div ref={copyRef} className="item__share">
-              <i className="bi bi-share item__shareLink" onClick={handleCopy}></i>
-              <div className="item__tooltipText">{copy}</div>
-            </div>
+        <div className="item__moreInfo">
+          <h5>Description</h5>
+          <p>{data.description}</p>
+        </div>
+        <div className="item__sellerDescription">
+          <p>Seller description</p>
+          <div className="item__sellerImageName">
+            <img src={sellerDetails.photourl} alt="img" />
+            <p>
+              {
+                (user?.uid === sellerDetails.id) ?
+                  <p onClick={() => history.push('/myProfile')} style={{ margin: 0 }} >{sellerDetails.username}</p>
+                  :
+                  <p onClick={() => history.push(`/profile/${sellerDetails.id}`)} style={{ margin: 0 }} >{sellerDetails.username}</p>
+              }
+              <span style={{ fontSize: 14, fontWeight: 400 }}>Member since {sellerDetails?.createdAt?.toDate().toLocaleString('en-IN', { month: 'short', year: 'numeric' })}</span>
+            </p>
+            <i className="bi bi-chevron-right"></i>
           </div>
-          <div className="item__sellerDescription">
-            <p>Seller description</p>
-            <div className="item__sellerImageName">
-              <img src={sellerDetails.photourl} alt="img" />
-              <p>
-                {
-                  (user?.uid === sellerDetails.id) ?
-                    <p onClick={() => history.push('/myProfile')} style={{ margin: 0 }} >{sellerDetails.username}</p>
-                    :
-                    <p onClick={() => history.push(`/profile/${sellerDetails.id}`)}  style={{ margin: 0 }} >{sellerDetails.username}</p>
-                }
-                <span style={{ fontSize: 14, fontWeight: 400 }}>Member since {sellerDetails?.createdAt?.toDate().toLocaleString('en-IN', { month: 'short', year: 'numeric' })}</span>
-              </p>
-              <i className="bi bi-chevron-right"></i>
-            </div>
-            <p className="item__sellerContactNum">Contact No: {sellerDetails.phone}</p>
-            {
-              (user?.uid === sellerDetails.id) ?
-                <button onClick={handleChatClick} disabled className="item__chatBtn">Ask questions your self</button>
-                :
-                <button onClick={handleChatClick} className="item__chatBtn">Chat with seller</button>
-            }
-          </div>
-          <div className="item__location">
-            <p>Posted in</p>
-            <p>{data?.place?.value}</p>
-            <img src={`https://api.mapbox.com/styles/v1/mapbox/dark-v10/static/${data?.place?.position?.lon},${data?.place?.position?.lat},12/380x160?access_token=pk.eyJ1IjoiaGFyaWtyaXNobmFuc3NhbmthciIsImEiOiJja3FuenhzMXIwMmhpMnZzMng5cGx0bWNhIn0.dda298RlmnCXkPdi-BBjiQ`} alt="" />
-          </div>
+          <p className="item__sellerContactNum">Contact No: {sellerDetails.phone}</p>
+          {
+            (user?.uid === sellerDetails.id) ?
+              <button onClick={handleChatClick} disabled className="item__chatBtn">Ask questions your self</button>
+              :
+              <button onClick={handleChatClick} className="item__chatBtn">Chat with seller</button>
+          }
+        </div>
+        <div className="item__location">
+          <p>Posted in</p>
+          <p>{data?.place?.value}</p>
+          <img src={`https://api.mapbox.com/styles/v1/mapbox/dark-v10/static/${data?.place?.position?.lon},${data?.place?.position?.lat},12/380x160?access_token=pk.eyJ1IjoiaGFyaWtyaXNobmFuc3NhbmthciIsImEiOiJja3FuenhzMXIwMmhpMnZzMng5cGx0bWNhIn0.dda298RlmnCXkPdi-BBjiQ`} alt="" />
         </div>
       </div>
     </div>

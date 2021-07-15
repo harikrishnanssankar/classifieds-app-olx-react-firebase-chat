@@ -3,7 +3,8 @@
     flex-direction: column;
     align-items: flex-start;
     justify-content: center;
-    width: 872px;
+    width: 870px;
+    max-width: 98%;
     border: 1px solid rgba(0, 47, 52, 0.2);
     border-radius: 5px;
   }
@@ -20,13 +21,14 @@
   .create__category {
     display: flex;
     border-top: 1px solid rgba(0, 47, 52, 0.2);
+    width: 100%;
   }
   
   .create__mainCategory, .create__subCategory {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    width: 435px;
+    width: 50%;
   }
   
   .create__mainCategory {
@@ -81,4 +83,9 @@
   
   .itemFocused {
     background-color: rgba(0, 47, 52, .2);
+  }
+  @media only screen and (max-width:880px) {
+    .create__container{
+      width: 100%;
+    }
   }

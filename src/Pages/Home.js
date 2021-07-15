@@ -9,11 +9,13 @@ import Category from '../Components/Category/Category';
 function Home() {
   return (
     <div className="homeParentDiv">
-        <Header />
+      <Header />
+      <div className="homePage__category">
         <Category />
-        <Banner />
-        <Posts />
-        <Footer />
+      </div>
+      <Banner />
+      <Posts />
+      <Footer />
     </div>
   );
 }

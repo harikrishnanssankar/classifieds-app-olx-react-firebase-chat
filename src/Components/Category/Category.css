@@ -1,7 +1,7 @@
 .category__menu {
     display: flex;
     flex-direction: column;
-    padding: 5em 2.2em 0.6em 2.2em;
+    padding: 5em 1.5em 0.6em 2em;
     box-shadow: 0px 0.5px 5px 0.5px rgba(186, 186, 186, 0.494);
     
 }
@@ -9,15 +9,18 @@
 .category__menu span {}
 .category__title {
     display: flex;
-
+    
+    
 }
 .category__title span {
     margin-right: 7px;
     font-weight: bolder;
+    white-space: nowrap;
 }
 .category__titleContents {
     display: flex;
     margin-right: 10px;
+    width: 180px;
 }
 .category__arrow {
     transform: rotate(180deg);
@@ -26,20 +29,29 @@
 .category__arrowDown {
     transition: ease-out 0.3s;
 }
+.category__quickOptions{
+    display: flex;
+    overflow: hidden;
+    column-gap: 7px;
+}
 
-.category__quickOptions span {
+.category__quickOptions > span {
     font-size: 14px;
-    padding: 8px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .Modal {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     margin-top: 7em;
     margin-left: auto;
     margin-right: auto;
     position: absolute;
+    padding: 10px 30px;
     left: 0;
     right: 0;
     bottom: 0;
@@ -51,6 +63,14 @@
     background-color: rgb(255, 255, 255);
     box-shadow: 1px 2px 6px 1px rgba(87, 87, 87, 0.44);
 }
+.Modal > i {
+    align-self: flex-end;
+    font-size: x-large;
+}
+.Modal > i:hover {
+    color: rgb(184, 0, 0);
+}
+
 
 .Overlay {
     position: absolute;
@@ -60,7 +80,7 @@
     bottom: 0;
     background-color: rgba(87, 87, 87, 0.049);
 }
-
+/* 
 .category__list {
     padding: 30px;
     display: grid;
@@ -68,6 +88,10 @@
     grid-template-rows: auto ;
     row-gap: 1em;
     column-gap: 2em;
+} */
+.category__list{
+    display: flex;
+    flex-wrap: wrap;
 }
 .category__listGroup {
     padding: 10px 20px;
@@ -93,4 +117,13 @@
 .category__list .Jobs {
     grid-row-start: 1;
     grid-row-end:span 2;
+}
+
+@media only screen and (max-width:550px)  {
+    .category__menu {
+        padding: 6.5em 0.5em 0.3em 1em;
+    }
+    .category__quickOptions{
+        display: none;
+    }
 }

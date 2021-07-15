@@ -18,7 +18,7 @@ const Menu = () => {
     return () => {
       
     }
-  }, [])
+  }, [user])
   useEffect(() => {
     if (user) {
       let handler = (event) => (!menuRef.current.contains(event.target)) && setPopOn(false)
@@ -29,15 +29,15 @@ const Menu = () => {
     }
   })
   return (
-    <div className="menu">
+  <div className="menu">
       <div className="user__present">
-        <div className="menu__quickbtns">
+        {/* <div className="menu__quickbtns">
           <i onClick={() => history.push('/chat/chatid')} className="bi bi-chat"></i>
           <i className="bi bi-bell"></i>
-        </div>
+        </div> */}
         <div ref={menuRef} className="popover__container">
           <div onClick={() => setPopOn(!popOn)} className="pop__btn">
-            <img className="profile__pic" src={userDetails.photourl} alt="img" />
+            <img className="profile__pic" src={userDetails?.photourl} alt="img" />
             <div className={popOn ? 'menu__arrow' : "menu__arrowDown"}>
               <Arrow></Arrow>
             </div>
@@ -46,10 +46,10 @@ const Menu = () => {
             <div className="arrow-up"></div>
             <div className="pop__contents">
               <div className="menu__profile">
-                <img src={userDetails.photourl} alt="img" />
+                <img src={userDetails?.photourl} alt="img" />
                 <div onClick={() => history.push('/editProfile/info')} className="menu__profileDiv">
                   <h6>Hello,</h6>
-                  <h4>{userDetails.username}</h4>
+                  <h4>{userDetails?.username}</h4>
                   <h6>View and edit profile</h6>
                 </div>
               </div>
@@ -89,7 +89,10 @@ const Menu = () => {
                 <i className="bi bi-download"></i>
                 <h5>Install OLX Lite app</h5>
               </div>
-              <div onClick={() => auth.signOut()} className="menu__section">
+              <div onClick={() => {
+                auth.signOut()
+                history.push('/')
+                }} className="menu__section">
                 <i className="bi bi-box-arrow-left"></i>
                 <h5 >Logout</h5>
               </div>

@@ -18,6 +18,8 @@
 .seller__profileName > img {
     width: 100px;
     height: auto;
+    border-radius: 50%;
+    object-fit: cover;
 }
 .seller__profileName > h1 {
     font-size: 2.7rem;
@@ -34,19 +36,40 @@
 .seller__profileName > p:hover {
     cursor: pointer;
 }
+.seller__profileInfo{
+    border: 1px solid #002f3435;
+    height: max-content;
+    width: 270px;
+}
+.seller__profileInfo>h5 {
+    background-color: #002f342c;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #002f34;
+    padding: 2px 7px;
+}
+
+.seller__profileInfo>h6 {
+    color: #002f3496;
+    font-size: small;
+    padding-left: 7px;
+}
+
 
 
 .seller__details {
     display: flex;
+    flex-direction: row-reverse;
 }
 
 .seller__rightSide {
-    width: 20%;
-    margin-right: 0;
-    margin-left: auto;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   width: 30%;
 }
 .seller__ads {
-    width: 100%;
+    width: 70%;
 }
 .seller__component > h6 {
     font-weight: 600;
@@ -57,7 +80,31 @@
     flex-wrap: wrap;
     column-gap: 20px;
     justify-content: space-evenly;
+    row-gap: 20px;
 }
 
 .sellerAds__cards {
+}
+
+@media only screen and (max-width:1000px){
+    .seller__rightSide{
+        width: 50%;
+    }
+    .seller__ads{
+        width: 50%;
+    }
+}
+@media only screen and (max-width:600px){
+    .seller__details{
+        flex-direction: column;
+    }
+    .seller__rightSide{
+        width: 100%;
+    }
+    .seller__ads{
+        width: 100%;
+    }
+    .seller__profileName{
+        flex-direction: column;
+    }
 }

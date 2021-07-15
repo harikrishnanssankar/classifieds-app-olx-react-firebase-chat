@@ -28,7 +28,7 @@ const Category = () => {
             <div className="category__title">
                 <div className="category__titleContents" onClick={openModal}>
                     <span>ALL CATEGORIES</span>
-                    <div className={modalIsOpen? 'category__arrow' : 'category__arrowDown'}>
+                    <div className={modalIsOpen ? 'category__arrow' : 'category__arrowDown'}>
                         <Arrow></Arrow>
                     </div>
                 </div>
@@ -51,6 +51,7 @@ const Category = () => {
                 contentLabel="Example Modal"
                 ariaHideApp={false}
             >
+                <i onClick={() => setIsOpen(false)} className="bi bi-x-circle"></i>
                 <div className="category__list">
                     {
                         Object.keys(category).map((item, key) => {

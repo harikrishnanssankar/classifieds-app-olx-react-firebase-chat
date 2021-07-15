@@ -15,10 +15,11 @@ const Chat = () => {
     const messagesEndRef = useRef(null);
     const [forbidden, setForbidden] = useState(false);
     const history = useHistory();
-    const [loading, setLoading] = useState(false)
+    const [loading, setLoading] = useState(false);
+    const [otherPreson, setOtherPreson] = useState();
 
-      //fetching user IDs from chat
-      useEffect(() => {
+    //fetching user IDs from chat
+    useEffect(() => {
         setLoading(true)
         db.collection("chat").doc(`${chatId}`).get().then(res => {
             setUserId(
@@ -78,7 +79,24 @@ const Chat = () => {
 
         }
     }, [chatId, user])
-  
+
+    useEffect(() => {
+        if (user && userId) {
+            if (userId[0] === user.uid) {
+                db.collection('users').doc(userId[1]).get().then(res => {
+                    setOtherPreson(res.data())
+                })
+            } else {
+                db.collection('users').doc(userId[0]).get().then(res => {
+                    setOtherPreson(res.data())
+                })
+            }
+        }
+        return () => {
+
+        }
+    }, [user, userId])
+
 
     //to place the scrollbar of chat container always at bottom
     const scrollToBottom = () => {
@@ -106,15 +124,50 @@ const Chat = () => {
             {
                 ((chatId !== 'chatid') && !forbidden) &&
                 <div
-                    onClick={() => {
-                        (user.uid !== userId[0]) ?
-                            history.push(`/profile/${userId[0]}`)
-                            :
-                            history.push(`/profile/${userId[1]}`)
-                    }}
+
                     className="chat__header"
+                    style={{ display: 'flex', alignItems: 'center', columnGap: '10px' }}
                 >
-                    {((userNames.user1 === userDetails.username) || (userNames.user1 === user.displayName)) ? <h4>{userNames.user2}</h4> : <h4>{userNames.user1}</h4>}
+                    <i onClick={() => history.goBack()} className="bi bi-arrow-left-short chat__backArrow"></i>
+                    <img
+                        onClick={() => {
+                            (user.uid !== userId[0]) ?
+                                history.push(`/profile/${userId[0]}`)
+                                :
+                                history.push(`/profile/${userId[1]}`)
+                        }}
+                        style={{ width: '35px', height: '35px', borderRadius: '50%', objectFit: 'cover' }}
+                        src={otherPreson?.photourl}
+                        alt=""
+                    />
+                    {
+                        (
+                            (userNames?.user1 === userDetails?.username)
+                            ||
+                            (userNames?.user1 === user?.displayName)
+                        ) ?
+                            <h4
+                                onClick={() => {
+                                    (user.uid !== userId[0]) ?
+                                        history.push(`/profile/${userId[0]}`)
+                                        :
+                                        history.push(`/profile/${userId[1]}`)
+                                }}
+                            >
+                                {userNames?.user2}
+                            </h4>
+                            :
+                            <h4
+                                onClick={() => {
+                                    (user.uid !== userId[0]) ?
+                                        history.push(`/profile/${userId[0]}`)
+                                        :
+                                        history.push(`/profile/${userId[1]}`)
+                                }}
+                            >
+                                {userNames.user1}
+                            </h4>
+                    }
                 </div>
             }
             {
@@ -149,9 +202,6 @@ const Chat = () => {
                     <input onChange={(e) => setText(e.target.value)} className="chat__input" type="text" value={text} placeholder="Start typing" />
                     <i onClick={sendText} className="bi bi-telegram"></i>
                 </form>
-            }
-            {
-             <h2 className="chat__loading" >Loading</h2>
             }
         </div>
     );

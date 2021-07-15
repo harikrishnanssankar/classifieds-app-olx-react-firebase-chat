@@ -2,7 +2,7 @@
   display: flex;
   align-items: center;
   justify-content: space-around;
-  width: 180px;
+  width: max-content;
 }
 
 .user__present i {
@@ -13,9 +13,9 @@
   border-radius: 50%;
   margin-right: 1vw;
 }
-.user__present i:hover {
+/* .user__present i:hover {
  background-color: #00e5ff5f;
-}
+} */
 /* .user__present > div > i {
   width: 3.5%;
   font-size: 24px;
@@ -194,4 +194,21 @@
 
 .horizontal__line {
   border-bottom: 1px solid rgb(189, 189, 189);
+}
+
+
+
+@media only screen and (max-width: 550px) {
+  
+  .pop__contents {
+    position: fixed;
+    width: 70%;
+    height: 92vh;
+    top: 0;
+    left: 10px;
+    margin-top: 50px;
+  }
+  .arrow-up {
+    display: none;
+  }
 }

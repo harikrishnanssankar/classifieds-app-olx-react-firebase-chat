@@ -2,7 +2,7 @@
     display: flex;
     flex-direction: column;
     height: 100%;
-    
+    position: relative;
     
     
 }
@@ -20,6 +20,9 @@
 }
 .chat__header >h4 {
     margin: 0;
+}
+.chat__backArrow {
+    font-size: xx-large;
 }
 .chat__messageContainer {
     height: 100%;
@@ -101,12 +104,10 @@
     font-size: xx-large;
     color: rgb(237, 123, 243);
     mix-blend-mode: exclusion;
-    
-    
-
 }
 
-
-.chat__loading {
-    position: fixed;
+@media only screen and (max-width:800px) {
+    .chat__message{
+        max-width: 80%;
+    }
 }

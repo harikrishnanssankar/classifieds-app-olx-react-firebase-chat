@@ -55,7 +55,10 @@
 
 .footerParentDiv .content {
   display: flex;
-  justify-content: center;
+  flex-direction: row;
+  column-gap: 2.5vw;
+  flex-wrap: wrap;
+  justify-content: space-around;
   align-items: flex-start;
   background: #ebeeef;
   padding: 16px 0px 32px 0px;
@@ -63,8 +66,9 @@
 .footer__cards {
   display: flex;
   flex-direction: column;
-  width: 18%;
+  width: max-content;
   height: 134px;
+  padding: 10px;
   
 }
 .footer__cards > span ~ span {
@@ -116,4 +120,17 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+}
+
+
+@media screen and (max-width:1080px){
+  .footer__banner{
+    display: none;
+  }
+}
+@media screen and (max-width:730px){
+  .footer{
+    display: flex;
+    flex-direction: column;
+  }
 }

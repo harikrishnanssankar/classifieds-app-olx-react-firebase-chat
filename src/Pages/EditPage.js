@@ -1,16 +1,27 @@
-import { useHistory, useParams } from "react-router";
+import { useContext, useEffect } from "react";
+import { Redirect, useHistory, useParams } from "react-router";
 import Category from "../Components/Category/Category"
 import EditProfileInfo from "../Components/EditProfile/EditProfileInfo";
 import EditProfilePicture from "../Components/EditProfilePicture/EditProfilePicture";
 import Footer from "../Components/Footer/Footer"
 import Header from "../Components/Header/Header"
+import { AuthContext } from "../store/Context";
 import './EditPage.css'
 
 
 
 const EditPage = () => {
+    const { user } = useContext(AuthContext)
     const { editInfo } = useParams()
     const history = useHistory();
+
+    useEffect(() => {
+        if(!user){
+          return <Redirect to={{
+            pathname: "/",
+          }} />
+        } 
+      }, [user])
 
 
     return (

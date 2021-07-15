@@ -2,10 +2,12 @@
     padding-top: 100px;
     min-height: 100vh;
 }
+
 .chatPage__container {
     display: flex;
     justify-content: space-evenly;
 }
+
 .chatPage__allChat {
     width: 35%;
     height: 81vh;
@@ -13,10 +15,32 @@
     border-radius: 7px;
     background-color: #f8f8f8;
 }
+
 .chatPage__chats {
     width: 60%;
     height: 81vh;
     border: 1px solid rgba(0, 0, 0, 0.159);
     border-radius: 7px;
     margin-left: 20px;
+}
+
+@media only screen and (max-width:800px) {
+    .allChat__only {
+        display: none;
+    }
+    .chat__only {
+        display: none;
+    }
+    .chatPage__allChat {
+        width: 98%;
+        height: 90vh;
+    }
+    .chatPage__chats {
+        width: 95%;
+        height: 90vh;
+        margin: 0;
+    }
+    .chatPage__main {
+        padding-top: 80px;
+    }
 }

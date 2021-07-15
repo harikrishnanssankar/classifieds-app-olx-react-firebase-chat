@@ -3,44 +3,77 @@
     padding: 40px 40px;
     min-height: 85vh;
 }
+
 .editPage__links {
     width: 25%;
     padding: 10px;
 }
+
 .editPage__link {
     margin: 0;
     padding-bottom: 20px;
     color: rgb(104, 104, 104);
 }
+
 .editPage__activeLink {
     font-weight: 600;
     color: #002f34;
 }
-.editPage__links > p:hover {
+
+.editPage__links>p:hover {
     cursor: pointer;
 }
-.editPage__links > button {
+
+.editPage__links>button {
     background-color: rgba(255, 255, 255, 0);
     color: #002f34;
-    padding: 7px 12px;
+    padding: 7px 0px;
     height: max-content;
     border-radius: 5px;
     border: 3px solid #002f34;
     margin: 0;
     font-size: small;
     font-weight: 600;
-    width: 100%;
-    
+    width: 20vw;
+    white-space: nowrap;
 }
 
-.editPage__links > button:hover {
-    box-shadow:inset 0px 0px 1px 1px #002f34;
+.editPage__links>button:hover {
+    box-shadow: inset 0px 0px 1px 1px #002f34;
     cursor: pointer;
 }
+
 .editPage__contents {
     width: 75%;
     border: 1px solid #002f3452;
     border-radius: 7px;
     padding: 20px;
-    
+}
+
+@media only screen and (max-width:700px) {
+    .editPage__main {
+        display: flex;
+        flex-direction: column;
+        padding: 10px;
+    }
+    .editPage__links {
+        display: flex;
+        width: 100%;
+        justify-content: center;
+        column-gap: 10px;
+        align-items: center;
+    }
+    .editPage__contents {
+        margin: auto;
+        width: 100%;
+    }
+    .editPage__link, .editPage__activeLink{
+        padding: 0;
+        font-size: small;
+    }
+    .editPage__links>button {
+        font-size: small;
+        width: max-content;
+        padding: 7px 3px;
+    }
 }

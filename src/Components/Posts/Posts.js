@@ -18,7 +18,7 @@ const Posts = () => {
   const fetchRef = db.collection('products').orderBy("date", "desc");
 
   useEffect(() => {
-    fetchRef.limit(3).get().then(snapshot => {
+    fetchRef.limit(20).get().then(snapshot => {
       const isCollectionEmpty = snapshot.size === 0;
       if (!isCollectionEmpty) {
         const allPost = snapshot.docs.map((product) => {
@@ -30,7 +30,7 @@ const Posts = () => {
         })
         const lastDoc = snapshot.docs[snapshot.docs.length - 1];
         setProducts(allPost)
-        setShuffled(allPost.slice(0, allPost.length).sort(() => Math.random() - 0.5).slice(0, 2))
+        setShuffled(allPost.slice(0, allPost.length).sort(() => Math.random() - 0.5).slice(0, 10))
         setLastKey(lastDoc)
       } else {
         setIsEmpty(true)

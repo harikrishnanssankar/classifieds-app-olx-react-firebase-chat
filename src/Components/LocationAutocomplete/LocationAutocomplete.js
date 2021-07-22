@@ -51,7 +51,7 @@ const LocationAutocomplete = ({place, setPlace}) => {
                         name: result.address.municipality,
                         dist: result.dist,
                         position: result.position,
-                        value: `${result.address.municipalitySubdivision}, ${result.address.countrySecondarySubdivision}, ${result.address.countrySubdivision}`
+                        value: `${result.address.municipalitySubdivision || result.address.municipality}, ${result.address.countrySecondarySubdivision}, ${result.address.countrySubdivision}`
                     }))
                     .sort((a, b) => a.dist - b.dist)}
                 onSelect={(place) => setPlace(place)}

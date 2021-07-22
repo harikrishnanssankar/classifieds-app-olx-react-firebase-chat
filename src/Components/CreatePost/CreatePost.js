@@ -91,7 +91,7 @@ const CreatePost = ({ category, subCategory, setSubCategory, }) => {
                     <div>
                         <div>
                             <span>Name : </span>
-                            <span>{userDetails.userame}</span>
+                            <span>{userDetails.username}</span>
                         </div>
                         <div>
                             <span>Phone No:{userDetails?.phone}</span>
